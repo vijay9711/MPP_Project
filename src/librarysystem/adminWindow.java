@@ -11,10 +11,21 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextField;
 
 public class adminWindow {
+	JLabel mainWindowHeaderPanelText;
+	JPanel mainWindowContentPanel;
 
 	private JFrame frame;
+	private JTextField am_memberID;
+	private JTextField am_firstName;
+	private JTextField am_lastName;
+	private JTextField am_street;
+	private JTextField am_city;
+	private JTextField am_state;
+	private JTextField am_zip;
+	private JTextField am_phoneNumber;
 
 	/**
 	 * Launch the application.
@@ -79,6 +90,15 @@ public class adminWindow {
 		mainWindowButtonePanel.add(btnLogOutButton);
 		
 		JButton btnAddMember = new JButton("Add Member");
+		// Adding new members to Database
+		btnAddMember.addMouseListener(new MouseAdapter() {					//@dip06ece: Actions to add new member
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				mainWindowHeaderPanelText.setText("Add Member");
+				sidePanelAddMember();
+				
+			}
+		});
 		btnAddMember.setBounds(10, 33, 214, 23);
 		mainWindowButtonePanel.add(btnAddMember);
 		
@@ -111,15 +131,103 @@ public class adminWindow {
 		frame.getContentPane().add(mainWindowHeaderPanel);
 		mainWindowHeaderPanel.setLayout(null);
 		
-		JPanel mainWindowContentPanel = new JPanel();
+		mainWindowHeaderPanelText = new JLabel("Welcome!");
+		mainWindowHeaderPanelText.setHorizontalAlignment(SwingConstants.CENTER);
+		mainWindowHeaderPanelText.setFont(new Font("Tahoma", Font.BOLD, 14));
+		mainWindowHeaderPanelText.setBounds(10, 11, 610, 37);
+		mainWindowHeaderPanel.add(mainWindowHeaderPanelText);
+		
+		
+		
+		
+	}
+	private void sidePanelAddMember() {
+		frame.repaint();
+		mainWindowContentPanel = new JPanel();
 		mainWindowContentPanel.setBounds(254, 81, 630, 381);
 		frame.getContentPane().add(mainWindowContentPanel);
 		mainWindowContentPanel.setLayout(null);
 		
+		JButton btnAddMemberFinal = new JButton("Add This Member");
+		btnAddMemberFinal.addMouseListener(new MouseAdapter() {							//@dip06ece: Add Member function here
+			@Override
+			public void mouseClicked(MouseEvent e) {									//@vijay: ###
+			}
+		});
+		btnAddMemberFinal.setBounds(430, 311, 135, 23);
+		mainWindowContentPanel.add(btnAddMemberFinal);
 		
+		am_memberID = new JTextField();
+		am_memberID.setBounds(85, 60, 182, 20);
+		mainWindowContentPanel.add(am_memberID);
+		am_memberID.setColumns(10);
 		
-	    
-
+		am_firstName = new JTextField();
+		am_firstName.setBounds(85, 118, 182, 20);
+		mainWindowContentPanel.add(am_firstName);
+		am_firstName.setColumns(10);
 		
+		am_lastName = new JTextField();
+		am_lastName.setBounds(85, 177, 182, 20);
+		mainWindowContentPanel.add(am_lastName);
+		am_lastName.setColumns(10);
+		
+		am_street = new JTextField();
+		am_street.setBounds(85, 240, 182, 20);
+		mainWindowContentPanel.add(am_street);
+		am_street.setColumns(10);
+		
+		am_city = new JTextField();
+		am_city.setBounds(383, 60, 182, 20);
+		mainWindowContentPanel.add(am_city);
+		am_city.setColumns(10);
+		
+		am_state = new JTextField();
+		am_state.setBounds(383, 118, 182, 20);
+		mainWindowContentPanel.add(am_state);
+		am_state.setColumns(10);
+		
+		am_zip = new JTextField();
+		am_zip.setBounds(383, 177, 182, 20);
+		mainWindowContentPanel.add(am_zip);
+		am_zip.setColumns(10);
+		
+		am_phoneNumber = new JTextField();
+		am_phoneNumber.setBounds(383, 240, 182, 20);
+		mainWindowContentPanel.add(am_phoneNumber);
+		am_phoneNumber.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Member ID");
+		lblNewLabel_2.setBounds(85, 45, 182, 14);
+		mainWindowContentPanel.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("FirstName");
+		lblNewLabel_3.setBounds(85, 103, 173, 14);
+		mainWindowContentPanel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Last Name");
+		lblNewLabel_4.setBounds(85, 162, 182, 14);
+		mainWindowContentPanel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("Street");
+		lblNewLabel_5.setBounds(85, 224, 182, 14);
+		mainWindowContentPanel.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_6 = new JLabel("City");
+		lblNewLabel_6.setBounds(383, 45, 182, 14);
+		mainWindowContentPanel.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_7 = new JLabel("State");
+		lblNewLabel_7.setBounds(383, 103, 182, 14);
+		mainWindowContentPanel.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_8 = new JLabel("Zip");
+		lblNewLabel_8.setBounds(383, 162, 182, 14);
+		mainWindowContentPanel.add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("Phone Number");
+		lblNewLabel_9.setBounds(383, 224, 182, 14);
+		mainWindowContentPanel.add(lblNewLabel_9);
+		frame.getContentPane().add(mainWindowContentPanel);
 	}
 }
