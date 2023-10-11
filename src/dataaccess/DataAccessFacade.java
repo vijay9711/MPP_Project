@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import business.Book;
 import business.BookCopy;
@@ -62,6 +64,18 @@ public class DataAccessFacade implements DataAccess {
 		return (HashMap<String, User>)readFromStorage(StorageType.USERS);
 	}
 	
+	public String validateUser(String username, String password) {
+		Map<String, User> ls = readUserMap();
+		for (Entry<String, User> set :
+             ls.entrySet()) {
+            User un = set.getValue();
+            if(username.equals(un.getId()) && password.equals(un.getPassword())) {
+                System.out.println(set.toString());
+            	return un.getAuthorization().toString();
+            }
+        }
+		return "NA";
+	}
 	
 	/////load methods - these place test data into the storage area
 	///// - used just once at startup  

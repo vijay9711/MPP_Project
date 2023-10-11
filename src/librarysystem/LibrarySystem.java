@@ -33,7 +33,8 @@ public class LibrarySystem extends JFrame implements LibWindow {
     	LibrarySystem.INSTANCE,
 		LoginWindow.INSTANCE,
 		AllMemberIdsWindow.INSTANCE,	
-		AllBookIdsWindow.INSTANCE
+		AllBookIdsWindow.INSTANCE,
+		adminWindow.INSTANCE,
 	};
     	
 	public static void hideAllWindows() {		
@@ -79,7 +80,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
     
     private void addMenuItems() {
        options = new JMenu("Options");  
- 	   menuBar.add(options);
+ 	   menuBar.add(options); 
  	   login = new JMenuItem("Login");
  	   login.addActionListener(new LoginListener());
  	   allBookIds = new JMenuItem("All Book Ids");

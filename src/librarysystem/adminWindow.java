@@ -12,25 +12,28 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class adminWindow {
-
+public class adminWindow extends JFrame implements LibWindow{
+	
+	public static final adminWindow INSTANCE = new adminWindow();
+	public String person = "default";
 	private JFrame frame;
-
+	private boolean isInitialized = false;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					adminWindow window = new adminWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					adminWindow window = new adminWindow();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -59,7 +62,7 @@ public class adminWindow {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mainWindowTextePanel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Administrator");
+		JLabel lblNewLabel_1 = new JLabel(person);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		mainWindowTextePanel.add(lblNewLabel_1);
 		
@@ -116,10 +119,32 @@ public class adminWindow {
 		frame.getContentPane().add(mainWindowContentPanel);
 		mainWindowContentPanel.setLayout(null);
 		
-		
-		
-	    
+	}
 
+	@Override
+	public void init() {
+		try {
+			adminWindow window = new adminWindow();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public boolean isInitialized() {
+		// TODO Auto-generated method stub
+		return isInitialized;
+	}
+
+	@Override
+	public void isInitialized(boolean val) {
+		// TODO Auto-generated method stub
+		isInitialized = val;
 		
+	}
+	
+	public void loginPerson(String text) {
+		person = text;
 	}
 }

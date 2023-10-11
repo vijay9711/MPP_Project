@@ -4,6 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -17,8 +23,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JOptionPane;
 
 import business.ControllerInterface;
-
+import business.LibraryMember;
 import business.SystemController;
+import dataaccess.DataAccess;
+import dataaccess.DataAccessFacade;
+import dataaccess.User;
 
 
 public class LoginWindow extends JFrame implements LibWindow {
@@ -183,10 +192,33 @@ public class LoginWindow extends JFrame implements LibWindow {
     			LibrarySystem.INSTANCE.setVisible(true);
     		});
     	}
+    	public static void loginToLibrary(String text) {
+    		LibrarySystem.hideAllWindows();
+    		adminWindow.INSTANCE.person = text;
+    		adminWindow.INSTANCE.init();
+			Util.centerFrameOnDesktop(adminWindow.INSTANCE);
+			adminWindow.INSTANCE.setVisible(true);
+    	}
     	
     	private void addLoginButtonListener(JButton butn) {
     		butn.addActionListener(evt -> {
-    			JOptionPane.showMessageDialog(this,"Successful Login");
+    			DataAccessFacade db = new DataAccessFacade();
+    			String result = (String) db.validateUser(username.getText(), password.getText());
+    			System.out.println(result);
+    			switch(result) {
+	    			case "ADMIN":
+	    				JOptionPane.showMessageDialog(this,"Successful Login to admin");
+	    				break;
+	    			case "BOTH": 
+	    				JOptionPane.showMessageDialog(this,"Successful Login to both");
+	    				break;
+	    			case "LIBRARIAN":
+	    				JOptionPane.showMessageDialog(this,"Successful Login to librarian");
+	    				loginToLibrary("Librarian");
+	    				break;
+	    			default:
+	    				JOptionPane.showMessageDialog(this, "Incorrect username or password. Please try again!");
+    			}
     				
     		});
     	}
