@@ -1,6 +1,7 @@
 package librarysystem;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,7 +23,7 @@ import java.util.Arrays;
 
 public class adminWindow extends JFrame implements LibWindow {
 
-	public static final adminWindow INSTANCE = new adminWindow();
+	public static final adminWindow INSTANCE = new adminWindow("default");
 	private DataAccessFacade db;
 	private boolean isInitialized = false;
 	public String person = "default";
@@ -31,14 +32,6 @@ public class adminWindow extends JFrame implements LibWindow {
 	JPanel mainWindowContentPanel2;
 
 	private JFrame frame;
-	private JTextField am_memberID;
-	private JTextField am_firstName;
-	private JTextField am_lastName;
-	private JTextField am_street;
-	private JTextField am_city;
-	private JTextField am_state;
-	private JTextField am_zip;
-	private JTextField am_phoneNumber;
 
 	private JTextField am_memberID2;
 	private JTextField am_firstName2;
@@ -48,18 +41,20 @@ public class adminWindow extends JFrame implements LibWindow {
 	private JTextField am_state2;
 	private JTextField am_zip2;
 	private JTextField am_phoneNumber2;
-
+	private JLabel lblNewLabel_1;
 
 	@Override
 	public void init() {
-		try {
-			adminWindow window = new adminWindow();
-			window.frame.setVisible(true);
-			pack();
-			connectDB();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					adminWindow window = new adminWindow(person);
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@Override
@@ -77,7 +72,6 @@ public class adminWindow extends JFrame implements LibWindow {
 
 	public void loginPerson(String text) {
 		person = text;
-
 	}
 	public void connectDB() {
 		db = new DataAccessFacade();
@@ -122,14 +116,14 @@ public class adminWindow extends JFrame implements LibWindow {
 	/**
 	 * Create the application.
 	 */
-	public adminWindow() {
-		initialize();
+	public adminWindow(String user) {
+		initialize(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String user) {
 		frame = new JFrame();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();				 	 //@dip06ec: Calculating screen dimension
 		frame.setBounds(0, 0, (int)(screenSize.width/1.5), (int)(screenSize.height/1.5));	 //@dip06ece: Setting frame size to full screen
@@ -146,7 +140,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mainWindowTextePanel.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel(person);
+		lblNewLabel_1 = new JLabel(user);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		mainWindowTextePanel.add(lblNewLabel_1);
 
@@ -183,7 +177,7 @@ public class adminWindow extends JFrame implements LibWindow {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				mainWindowHeaderPanelText.setText("Modify Member Data");
-				sidePanelModifyMember();
+//				sidePanelModifyMember();
 			}
 		});
 		btnEditMember.setBounds(10, 63, 214, 23);
@@ -346,99 +340,15 @@ public class adminWindow extends JFrame implements LibWindow {
 		}
 
 	private void sidePanelAddMember() {
-		if (mainWindowContentPanel2!=null)
-			frame.remove(mainWindowContentPanel2);
-		mainWindowContentPanel1 = new JPanel();
-		mainWindowContentPanel1.setBounds(254, 81, 630, 381);
-		frame.getContentPane().add(mainWindowContentPanel1);
-		mainWindowContentPanel1.setLayout(null);
-		
-		JButton btnAddMemberFinal = new JButton("Add This Member");
-		btnAddMemberFinal.addMouseListener(new MouseAdapter() {							//@dip06ece: Add Member function here
-			@Override
-			public void mouseClicked(MouseEvent e) {									//@vijay: ###
-			}
-		});
-		btnAddMemberFinal.setBounds(430, 311, 135, 23);
-		mainWindowContentPanel1.add(btnAddMemberFinal);
-		
-		am_memberID = new JTextField();
-		am_memberID.setBounds(85, 60, 182, 20);
-		mainWindowContentPanel1.add(am_memberID);
-		am_memberID.setColumns(10);
-		
-		am_firstName = new JTextField();
-		am_firstName.setBounds(85, 118, 182, 20);
-		mainWindowContentPanel1.add(am_firstName);
-		am_firstName.setColumns(10);
-		
-		am_lastName = new JTextField();
-		am_lastName.setBounds(85, 177, 182, 20);
-		mainWindowContentPanel1.add(am_lastName);
-		am_lastName.setColumns(10);
-		
-		am_street = new JTextField();
-		am_street.setBounds(85, 240, 182, 20);
-		mainWindowContentPanel1.add(am_street);
-		am_street.setColumns(10);
-		
-		am_city = new JTextField();
-		am_city.setBounds(383, 60, 182, 20);
-		mainWindowContentPanel1.add(am_city);
-		am_city.setColumns(10);
-		
-		am_state = new JTextField();
-		am_state.setBounds(383, 118, 182, 20);
-		mainWindowContentPanel1.add(am_state);
-		am_state.setColumns(10);
-		
-		am_zip = new JTextField();
-		am_zip.setBounds(383, 177, 182, 20);
-		mainWindowContentPanel1.add(am_zip);
-		am_zip.setColumns(10);
-		
-		am_phoneNumber = new JTextField();
-		am_phoneNumber.setBounds(383, 240, 182, 20);
-		mainWindowContentPanel1.add(am_phoneNumber);
-		am_phoneNumber.setColumns(10);
-		
-		JLabel lblNewLabel_2 = new JLabel("Member ID");
-		lblNewLabel_2.setBounds(85, 45, 182, 14);
-		mainWindowContentPanel1.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("FirstName");
-		lblNewLabel_3.setBounds(85, 103, 173, 14);
-		mainWindowContentPanel1.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Last Name");
-		lblNewLabel_4.setBounds(85, 162, 182, 14);
-		mainWindowContentPanel1.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("Street");
-		lblNewLabel_5.setBounds(85, 224, 182, 14);
-		mainWindowContentPanel1.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("City");
-		lblNewLabel_6.setBounds(383, 45, 182, 14);
-		mainWindowContentPanel1.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("State");
-		lblNewLabel_7.setBounds(383, 103, 182, 14);
-		mainWindowContentPanel1.add(lblNewLabel_7);
-		
-		JLabel lblNewLabel_8 = new JLabel("Zip");
-		lblNewLabel_8.setBounds(383, 162, 182, 14);
-		mainWindowContentPanel1.add(lblNewLabel_8);
-		
-		JLabel lblNewLabel_9 = new JLabel("Phone Number");
-		lblNewLabel_9.setBounds(383, 224, 182, 14);
-		mainWindowContentPanel1.add(lblNewLabel_9);
-		frame.getContentPane().add(mainWindowContentPanel1);
-
-		mainWindowContentPanel1.revalidate();
-		mainWindowContentPanel1.repaint();
-		frame.revalidate();
-		frame.repaint();
+		toggleAdminFrame(false);
+		AddMember.INSTANCE.init();
+		Util.centerFrameOnDesktop(AddMember.INSTANCE);
+		AddMember.INSTANCE.setVisible(true);
 		pack();
+	}
+	
+	public void toggleAdminFrame(boolean val) {
+		adminWindow.INSTANCE.setVisible(val);
+		frame.setVisible(val);
 	}
 }

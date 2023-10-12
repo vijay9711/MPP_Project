@@ -190,13 +190,17 @@ public class LoginWindow extends JFrame implements LibWindow {
     		});
     	}
     	public static void loginToLibrary(String text) {
-    		LibrarySystem.hideAllWindows();
+//    		LibrarySystem.hideAllWindows();
+    		toggleLoginFrame(false);
     		adminWindow.INSTANCE.init();
     		adminWindow.INSTANCE.loginPerson(text);
 			Util.centerFrameOnDesktop(adminWindow.INSTANCE);
 			adminWindow.INSTANCE.setVisible(true);
     	}
-    	
+    	public static void toggleLoginFrame(boolean val) {
+    		LoginWindow.INSTANCE.setVisible(val);
+    		LoginWindow.INSTANCE.mainPanel.setVisible(val);
+    	}
     	private void addLoginButtonListener(JButton butn) {
     		butn.addActionListener(evt -> {
     			DataAccessFacade db = new DataAccessFacade();

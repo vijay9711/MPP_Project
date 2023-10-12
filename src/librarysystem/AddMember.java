@@ -8,19 +8,36 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.SwingConstants;
 
-public class AddMember {
+import business.Address;
+import business.LibraryMember;
+import dataaccess.DataAccessFacade;
 
+public class AddMember extends JFrame implements LibWindow {
+
+	public static final AddMember INSTANCE = new AddMember();
+	private DataAccessFacade db;
+	private boolean isInitialized = false;
 	private JFrame frame;
+	
+	
+	public void connectDB() {
+		db = new DataAccessFacade();
+	}
+	public void addMember() {
+		Address address = new Address("St4th", "fairfield", "IOWA", "54638");
+		LibraryMember lb = new LibraryMember("120", "Vijay", "Mano", "7482749372", address);
+		db.saveNewMember(lb);
+	}
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	@Override
+	public void init() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -32,6 +49,32 @@ public class AddMember {
 			}
 		});
 	}
+
+	@Override
+	public boolean isInitialized() {
+		return isInitialized;
+	}
+
+	@Override
+	public void isInitialized(boolean val) {
+		isInitialized = val;
+
+	}
+	/**
+	 * Launch the application.
+	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					AddMember window = new AddMember();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -145,12 +188,16 @@ public class AddMember {
 		
 		// back button to move back to main menu
 		JButton backButton = new JButton("Back to Main");
-		backButton.addMouseListener(new MouseAdapter() {							//@dip06ece: Add Member function here
-			@Override
-			public void mouseClicked(MouseEvent e) {									//@vijay: ###
-			}
-		});
+		backButton.addActionListener(new BackToMainListener());
 		backButton.setBounds(100, 311, 135, 23);
 		mainWindowContentPanel1.add(backButton);
+	}
+	class BackToMainListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			LibrarySystem.hideAllWindows();
+			adminWindow.INSTANCE.toggleAdminFrame(true);
+    		pack();
+		}
 	}
 }

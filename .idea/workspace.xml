@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5ed8cc27-f7eb-4dcc-8a59-3da12a8f8e41" name="Changes" comment="add member functionality and add book">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/AddMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/AddMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/LibrarySystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/LibrarySystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/LoginWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/librarysystem/adminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/adminWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +54,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging master",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -90,7 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696950609309</updated>
       <workItem from="1696950610682" duration="1052000" />
-      <workItem from="1697062218317" duration="9145000" />
+      <workItem from="1697062218317" duration="9928000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -140,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697126883542</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add member functionality and add book">
+      <option name="closed" value="true" />
+      <created>1697128251695</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1697128251695</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
