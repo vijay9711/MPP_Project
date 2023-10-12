@@ -60,7 +60,7 @@ public class EditMember {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 640, 420);
+		frame.setBounds(450, 150, 640, 420);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel mainWindowContentPanel1 = new JPanel();

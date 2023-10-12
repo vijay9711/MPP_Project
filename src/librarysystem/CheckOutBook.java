@@ -52,7 +52,7 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 640, 420);
+		frame.setBounds(450, 150, 640, 420);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
