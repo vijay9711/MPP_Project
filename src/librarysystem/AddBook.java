@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import librarysystem.AddMember.BackToMainListener;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -14,8 +17,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
 
-public class AddBook {
+public class AddBook extends JFrame implements LibWindow{
 
+	public static final AddBook INSTANCE = new AddBook();
 	private JFrame frame;
 	private JTextField bookTitle;
 	private JTextField bookIsbn;
@@ -24,7 +28,7 @@ public class AddBook {
 	private JList bookAuthorList;
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
-	private JTextField textField;
+	private JTextField bookMaxCheckoutDays;
 
 	/**
 	 * Launch the application.
@@ -71,6 +75,7 @@ public class AddBook {
 		
 		bookTitle = new JTextField();
 		bookTitle.setBounds(51, 58, 536, 20);
+		bookTitle.setName("Book Title");
 		frame.getContentPane().add(bookTitle);
 		bookTitle.setColumns(10);
 		
@@ -80,7 +85,7 @@ public class AddBook {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		bookIsbn = new JTextField();
-		bookIsbn.setText("");
+		bookIsbn.setText("Book ISBN");
 		bookIsbn.setBounds(51, 117, 146, 20);
 		frame.getContentPane().add(bookIsbn);
 		bookIsbn.setColumns(10);
@@ -92,6 +97,7 @@ public class AddBook {
 		
 		bookAvailability = new JTextField();
 		bookAvailability.setBounds(207, 117, 113, 20);
+		bookAvailability.setText("Book Avaiablity");
 		frame.getContentPane().add(bookAvailability);
 		bookAvailability.setColumns(10);
 		
@@ -102,6 +108,7 @@ public class AddBook {
 		
 		bookCopyCount = new JTextField();
 		bookCopyCount.setBounds(330, 117, 113, 20);
+		bookCopyCount.setText("Book Copy Count");
 		frame.getContentPane().add(bookCopyCount);
 		bookCopyCount.setColumns(10);
 		
@@ -110,6 +117,7 @@ public class AddBook {
 		bookAuthorList = new JList(week) ;
 		bookAuthorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		bookAuthorList.setBounds(51, 179, 536, 128);
+		//bookAuthorList.setText("Book Author");
 		frame.getContentPane().add(bookAuthorList);
 		
 
@@ -138,11 +146,48 @@ public class AddBook {
 		lblNewLabel_5.setBounds(453, 100, 127, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
-		textField = new JTextField();
-		textField.setBounds(453, 117, 134, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		bookMaxCheckoutDays = new JTextField();
+		bookMaxCheckoutDays.setText("Maximum Checkout Days");
+		bookMaxCheckoutDays.setBounds(453, 117, 134, 20);
+		frame.getContentPane().add(bookMaxCheckoutDays);
+		bookMaxCheckoutDays.setColumns(10);
 		
+		// back button to move back to main menu
+				JButton backButton = new JButton("Back to Main");
+				backButton.addActionListener(new BackToMainListener());
+				backButton.setBounds(51, 321, 135, 23);
+				frame.getContentPane().add(backButton);
+	}
+	class BackToMainListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			LibrarySystem.hideAllWindows();
+			toggleAddMemeberFrame(false);
+			adminWindow.INSTANCE.toggleAdminFrame(true);
+    		pack();
+		}
+	}
+	
+	public void toggleAddMemeberFrame(boolean val) {
+		AddMember.INSTANCE.setVisible(val);
+		frame.setVisible(val);
+	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isInitialized() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void isInitialized(boolean val) {
+		// TODO Auto-generated method stub
 		
 	}
 }
