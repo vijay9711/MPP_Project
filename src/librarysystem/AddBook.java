@@ -23,6 +23,8 @@ public class AddBook {
 	private JTextField bookCopyCount;
 	private JList bookAuthorList;
 	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_5;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -79,27 +81,27 @@ public class AddBook {
 		
 		bookIsbn = new JTextField();
 		bookIsbn.setText("");
-		bookIsbn.setBounds(51, 117, 194, 20);
+		bookIsbn.setBounds(51, 117, 146, 20);
 		frame.getContentPane().add(bookIsbn);
 		bookIsbn.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Availability");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_2.setBounds(277, 100, 89, 14);
+		lblNewLabel_2.setBounds(207, 100, 89, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		bookAvailability = new JTextField();
-		bookAvailability.setBounds(277, 117, 127, 20);
+		bookAvailability.setBounds(207, 117, 113, 20);
 		frame.getContentPane().add(bookAvailability);
 		bookAvailability.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Copy Count");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_3.setBounds(438, 100, 76, 14);
+		lblNewLabel_3.setBounds(330, 100, 76, 14);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		bookCopyCount = new JTextField();
-		bookCopyCount.setBounds(438, 117, 149, 20);
+		bookCopyCount.setBounds(330, 117, 113, 20);
 		frame.getContentPane().add(bookCopyCount);
 		bookCopyCount.setColumns(10);
 		
@@ -130,6 +132,15 @@ public class AddBook {
 		btnAddBook.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAddBook.setBounds(460, 320, 127, 23);
 		frame.getContentPane().add(btnAddBook);
+		
+		lblNewLabel_5 = new JLabel("Max. Checkout Time");
+		lblNewLabel_5.setBounds(453, 100, 127, 14);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		textField = new JTextField();
+		textField.setBounds(453, 117, 134, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
 		
 		
 	}
