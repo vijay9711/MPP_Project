@@ -17,11 +17,11 @@ import javax.swing.ListSelectionModel;
 public class AddBook {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JList list;
+	private JTextField bookTitle;
+	private JTextField bookIsbn;
+	private JTextField bookAvailability;
+	private JTextField bookCopyCount;
+	private JList bookAuthorList;
 	private JLabel lblNewLabel_4;
 
 	/**
@@ -67,48 +67,48 @@ public class AddBook {
 		lblNewLabel.setBounds(51, 40, 89, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(51, 58, 536, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		bookTitle = new JTextField();
+		bookTitle.setBounds(51, 58, 536, 20);
+		frame.getContentPane().add(bookTitle);
+		bookTitle.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("ISBN Number");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_1.setBounds(51, 100, 76, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("");
-		textField_1.setBounds(51, 117, 194, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		bookIsbn = new JTextField();
+		bookIsbn.setText("");
+		bookIsbn.setBounds(51, 117, 194, 20);
+		frame.getContentPane().add(bookIsbn);
+		bookIsbn.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Availability");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_2.setBounds(277, 100, 89, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(277, 117, 127, 20);
-		frame.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		bookAvailability = new JTextField();
+		bookAvailability.setBounds(277, 117, 127, 20);
+		frame.getContentPane().add(bookAvailability);
+		bookAvailability.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Copy Count");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_3.setBounds(438, 100, 76, 14);
 		frame.getContentPane().add(lblNewLabel_3);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(438, 117, 149, 20);
-		frame.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		bookCopyCount = new JTextField();
+		bookCopyCount.setBounds(438, 117, 149, 20);
+		frame.getContentPane().add(bookCopyCount);
+		bookCopyCount.setColumns(10);
 		
 		String week[]= { "Monday","Tuesday","Wednesday",
                 "Thursday","Friday","Saturday","Sunday"};
-		list = new JList(week) ;
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setBounds(51, 179, 536, 128);
-		frame.getContentPane().add(list);
+		bookAuthorList = new JList(week) ;
+		bookAuthorList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		bookAuthorList.setBounds(51, 179, 536, 128);
+		frame.getContentPane().add(bookAuthorList);
 		
 
 		
@@ -126,10 +126,10 @@ public class AddBook {
 		btnNewButton.setBounds(51, 148, 52, 28);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Add This Book");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1.setBounds(460, 320, 127, 23);
-		frame.getContentPane().add(btnNewButton_1);
+		JButton btnAddBook = new JButton("Add This Book");
+		btnAddBook.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnAddBook.setBounds(460, 320, 127, 23);
+		frame.getContentPane().add(btnAddBook);
 		
 		
 	}

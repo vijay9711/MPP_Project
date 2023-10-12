@@ -142,8 +142,8 @@ public class AddAuthor {
 		authorBio.setBounds(53, 268, 511, 59);
 		frame.getContentPane().add(authorBio);
 		
-		JButton btnNewButton = new JButton("Add This Author");
-		btnNewButton.setBounds(426, 347, 138, 23);
-		frame.getContentPane().add(btnNewButton);
+		JButton btnAddAuthor = new JButton("Add This Author");
+		btnAddAuthor.setBounds(426, 347, 138, 23);
+		frame.getContentPane().add(btnAddAuthor);
 	}
 }
