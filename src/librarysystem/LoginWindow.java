@@ -78,16 +78,13 @@ public class LoginWindow extends JFrame implements LibWindow {
     		BorderLayout bl = new BorderLayout();
     		bl.setVgap(30);
     		mainPanel.setLayout(bl);
-    					
+
     		mainPanel.add(upperHalf, BorderLayout.NORTH);
     		mainPanel.add(middleHalf, BorderLayout.CENTER);
     		mainPanel.add(lowerHalf, BorderLayout.SOUTH);
     		getContentPane().add(mainPanel);
     		isInitialized(true);
     		pack();
-    		//setSize(660, 500);
-
-    	
     }
     private void defineUpperHalf() {
     		
@@ -194,8 +191,8 @@ public class LoginWindow extends JFrame implements LibWindow {
     	}
     	public static void loginToLibrary(String text) {
     		LibrarySystem.hideAllWindows();
-    		adminWindow.INSTANCE.person = text;
     		adminWindow.INSTANCE.init();
+    		adminWindow.INSTANCE.loginPerson(text);
 			Util.centerFrameOnDesktop(adminWindow.INSTANCE);
 			adminWindow.INSTANCE.setVisible(true);
     	}
@@ -208,13 +205,13 @@ public class LoginWindow extends JFrame implements LibWindow {
     			switch(result) {
 	    			case "ADMIN":
 	    				JOptionPane.showMessageDialog(this,"Successful Login to admin");
+	    				loginToLibrary("Librarian");
 	    				break;
 	    			case "BOTH": 
 	    				JOptionPane.showMessageDialog(this,"Successful Login to both");
 	    				break;
 	    			case "LIBRARIAN":
 	    				JOptionPane.showMessageDialog(this,"Successful Login to librarian");
-	    				loginToLibrary("Librarian");
 	    				break;
 	    			default:
 	    				JOptionPane.showMessageDialog(this, "Incorrect username or password. Please try again!");

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import business.Author;
 import business.Book;
 import business.BookCopy;
 import business.LibraryMember;
@@ -39,6 +40,13 @@ public class DataAccessFacade implements DataAccess {
 		String memberId = member.getMemberId();
 		mems.put(memberId, member);
 		saveToStorage(StorageType.MEMBERS, mems);	
+	}
+	
+	public void addNewBook(Book book) {
+		HashMap<String, Book> books = readBooksMap();
+		String bookID = book.getIsbn();
+		books.put(bookID, book);
+		saveToStorage(StorageType.BOOKS, books);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -76,7 +84,6 @@ public class DataAccessFacade implements DataAccess {
         }
 		return "NA";
 	}
-	
 	/////load methods - these place test data into the storage area
 	///// - used just once at startup  
 	
@@ -96,6 +103,11 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String, LibraryMember> members = new HashMap<String, LibraryMember>();
 		memberList.forEach(member -> members.put(member.getMemberId(), member));
 		saveToStorage(StorageType.MEMBERS, members);
+	}
+	
+	static void loadAuthorMap(List<Author> authorList) {
+		HashMap<String, Author> authorMap = new HashMap<String, Author>();
+		authorList.forEach(author -> authorMap.put(author.getFirstName(), author));
 	}
 	
 	static void saveToStorage(StorageType type, Object ob) {
@@ -164,5 +176,7 @@ public class DataAccessFacade implements DataAccess {
 		}
 		private static final long serialVersionUID = 5399827794066637059L;
 	}
+	
+	
 	
 }

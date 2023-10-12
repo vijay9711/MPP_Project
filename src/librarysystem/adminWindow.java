@@ -9,16 +9,24 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import business.Address;
+import business.Book;
+import business.LibraryMember;
+import dataaccess.DataAccessFacade;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 public class adminWindow extends JFrame implements LibWindow {
 
 	public static final adminWindow INSTANCE = new adminWindow();
-
+	private DataAccessFacade db;
 	private boolean isInitialized = false;
 	public String person = "default";
+//	public List<Author> allAuthor;
 	JLabel mainWindowHeaderPanelText;
 	JPanel mainWindowContentPanel;
 
@@ -31,6 +39,58 @@ public class adminWindow extends JFrame implements LibWindow {
 	private JTextField am_state;
 	private JTextField am_zip;
 	private JTextField am_phoneNumber;
+	
+	
+	@Override
+	public void init() {
+		try {
+			adminWindow window = new adminWindow();
+			window.frame.setVisible(true);
+			connectDB();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public boolean isInitialized() {
+		// TODO Auto-generated method stub
+		return isInitialized;
+	}
+
+	@Override
+	public void isInitialized(boolean val) {
+		// TODO Auto-generated method stub
+		isInitialized = val;
+		
+	}
+	
+	public void loginPerson(String text) {
+		person = text;
+		
+	}
+	public void connectDB() {
+		db = new DataAccessFacade();
+	}
+	public void addMember() {
+		Address address = new Address("St4th", "fairfield", "IOWA", "54638");
+		LibraryMember lb = new LibraryMember("120", "Vijay", "Mano", "7482749372", address);
+		db.saveNewMember(lb);
+	}
+	
+	public void addAuthor() {
+		
+	}
+	
+	public void addBook() {
+//		List<Author> author = Arrays.asList();
+		Book newBook = new Book("2323", "Java 5", 7, null);
+		db.addNewBook(null);
+	}
+	
+	public void checkout() {
+		
+	}
 	/**
 	 * 
 	 * Launch the application.
@@ -56,6 +116,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		initialize();
 	}
 
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -75,10 +136,14 @@ public class adminWindow extends JFrame implements LibWindow {
 		lblNewLabel.setFont(new Font("Takoma", Font.BOLD, 16));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mainWindowTextePanel.add(lblNewLabel);
-
+		
 		JLabel lblNewLabel_1 = new JLabel(person);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		mainWindowTextePanel.add(lblNewLabel_1);
+
+//		JLabel lblNewLabel_1 = new JLabel(person);
+//		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 14));
+//		mainWindowTextePanel.add(lblNewLabel_1);
 
 		JPanel mainWindowButtonePanel = new JPanel();
 		mainWindowButtonePanel.setBounds(10, 81, 234, 381);
@@ -102,7 +167,6 @@ public class adminWindow extends JFrame implements LibWindow {
 			public void mouseClicked(MouseEvent e) {
 				mainWindowHeaderPanelText.setText("Add Member");
 				sidePanelAddMember();
-				
 			}
 		});
 		btnAddMember.setBounds(10, 33, 214, 23);
@@ -149,32 +213,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowHeaderPanel.add(mainWindowHeaderPanelText);
 
 	}
-	@Override
-	public void init() {
-		try {
-			adminWindow window = new adminWindow();
-			window.frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
-	@Override
-	public boolean isInitialized() {
-		// TODO Auto-generated method stub
-		return isInitialized;
-	}
-
-	@Override
-	public void isInitialized(boolean val) {
-		// TODO Auto-generated method stub
-		isInitialized = val;
-		
-	}
-	
-	public void loginPerson(String text) {
-		person = text;
-	}
 	
 	private void sidePanelAddMember() {
 		frame.repaint();

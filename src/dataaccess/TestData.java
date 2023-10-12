@@ -59,7 +59,7 @@ public class TestData {
 		libraryMember = new LibraryMember("1004", "Ricardo", "Montalbahn", "641-472-2871", addresses.get(7));
 		members.add(libraryMember);
 		
-		DataAccessFacade.loadMemberMap(members);	
+		DataAccessFacade.loadMemberMap(members);
 	}
 	
 	///////////// DATA //////////////
