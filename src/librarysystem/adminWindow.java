@@ -95,24 +95,6 @@ public class adminWindow extends JFrame implements LibWindow {
 
 	}
 	/**
-	 * 
-	 * Launch the application.
-	 */
-
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					adminWindow window = new adminWindow();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
 	 * Create the application.
 	 */
 	public adminWindow(String user) {
@@ -126,7 +108,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		frame = new JFrame();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();				 	 //@dip06ec: Calculating screen dimension
 		frame.setBounds(350, 150, 280, 520);	 	//@dip06ece: Setting frame size to full screen
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);									 //@dip06ece: Maximize the window
+														//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);									 //@dip06ece: Maximize the window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.getContentPane().setLayout(null);
 
