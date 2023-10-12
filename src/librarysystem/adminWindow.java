@@ -27,7 +27,6 @@ public class adminWindow extends JFrame implements LibWindow {
 	private DataAccessFacade db;
 	private boolean isInitialized = false;
 	public String person = "default";
-	JLabel mainWindowHeaderPanelText;
 	JPanel mainWindowContentPanel1;
 	JPanel mainWindowContentPanel2;
 
@@ -126,7 +125,7 @@ public class adminWindow extends JFrame implements LibWindow {
 	private void initialize(String user) {
 		frame = new JFrame();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();				 	 //@dip06ec: Calculating screen dimension
-		frame.setBounds(0, 0, (int)(screenSize.width/1.5), (int)(screenSize.height/1.5));	 //@dip06ece: Setting frame size to full screen
+		frame.setBounds(350, 150, 280, 520);	 	//@dip06ece: Setting frame size to full screen
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);									 //@dip06ece: Maximize the window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.getContentPane().setLayout(null);
@@ -161,10 +160,9 @@ public class adminWindow extends JFrame implements LibWindow {
 
 		JButton btnAddMember = new JButton("Add Member");
 		// Adding new members to Database
-		btnAddMember.addMouseListener(new MouseAdapter() {					//@dip06ece: Actions to add new member
+		btnAddMember.addMouseListener(new MouseAdapter() {					
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				mainWindowHeaderPanelText.setText("Add Member");
+			public void mouseClicked(MouseEvent e) {				//@dip06ece: Actions to add new member
 				sidePanelAddMember();
 				
 			}
@@ -175,9 +173,8 @@ public class adminWindow extends JFrame implements LibWindow {
 		JButton btnEditMember = new JButton("Edit Member");
 		btnEditMember.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				mainWindowHeaderPanelText.setText("Modify Member Data");
-//				sidePanelModifyMember();
+			public void mouseClicked(MouseEvent e) {       //@dip06ece: Need to add functions to edit member
+				
 			}
 		});
 		btnEditMember.setBounds(10, 63, 214, 23);
@@ -202,142 +199,10 @@ public class adminWindow extends JFrame implements LibWindow {
 		JButton btnBookList = new JButton("Book List");
 		btnBookList.setBounds(10, 214, 214, 23);
 		mainWindowButtonePanel.add(btnBookList);
-
-		JPanel mainWindowHeaderPanel = new JPanel();
-		mainWindowHeaderPanel.setBounds(254, 11, 630, 59);
-		frame.getContentPane().add(mainWindowHeaderPanel);
-		mainWindowHeaderPanel.setLayout(null);
-
-		JPanel mainWindowContentPanel = new JPanel();
-		mainWindowContentPanel.setBounds(254, 81, 630, 381);
-		frame.getContentPane().add(mainWindowContentPanel);
-		mainWindowContentPanel.setLayout(null);
-
-		mainWindowHeaderPanelText = new JLabel("Welcome!");
-		mainWindowHeaderPanelText.setHorizontalAlignment(SwingConstants.CENTER);
-		mainWindowHeaderPanelText.setFont(new Font("Tahoma", Font.BOLD, 14));
-		mainWindowHeaderPanelText.setBounds(10, 11, 610, 37);
-		mainWindowHeaderPanel.add(mainWindowHeaderPanelText);
 		pack();
 
 	}
 
-        private void sidePanelModifyMember() {
-			if(mainWindowContentPanel1!=null)
-				frame.remove(mainWindowContentPanel1);
-			// Working on Edit member
-			mainWindowContentPanel2 = new JPanel();
-			mainWindowContentPanel2.setBounds(254, 81, 630, 381);
-			frame.getContentPane().add(mainWindowContentPanel2);
-			mainWindowContentPanel2.setLayout(null);
-
-			JButton btnModifyMemberFinal = new JButton("Modify This Member");
-			btnModifyMemberFinal.addMouseListener(new MouseAdapter() {							//@dip06ece: Modify Member function here
-				@Override
-				public void mouseClicked(MouseEvent e) {										//@vijay: ###
-				}
-			});
-				btnModifyMemberFinal.setBounds(430, 311, 135, 23);
-				mainWindowContentPanel2.add(btnModifyMemberFinal);
-
-				am_memberID2 = new JTextField();
-				am_memberID2.setEditable(false);
-				am_memberID2.setBounds(85, 60, 182, 20);
-				mainWindowContentPanel2.add(am_memberID2);
-				am_memberID2.setColumns(10);
-
-				am_firstName2 = new JTextField();
-				am_firstName2.setBounds(85, 118, 182, 20);
-				mainWindowContentPanel2.add(am_firstName2);
-				am_firstName2.setColumns(10);
-
-				am_lastName2 = new JTextField();
-				am_lastName2.setBounds(85, 177, 182, 20);
-				mainWindowContentPanel2.add(am_lastName2);
-				am_lastName2.setColumns(10);
-
-				am_street2 = new JTextField();
-				am_street2.setBounds(85, 240, 182, 20);
-				mainWindowContentPanel2.add(am_street2);
-				am_street2.setColumns(10);
-
-				am_city2 = new JTextField();
-				am_city2.setBounds(383, 60, 182, 20);
-				mainWindowContentPanel2.add(am_city2);
-				am_city2.setColumns(10);
-
-				am_state2 = new JTextField();
-				am_state2.setBounds(383, 118, 182, 20);
-				mainWindowContentPanel2.add(am_state2);
-				am_state2.setColumns(10);
-
-				am_zip2 = new JTextField();
-				am_zip2.setBounds(383, 177, 182, 20);
-				mainWindowContentPanel2.add(am_zip2);
-				am_zip2.setColumns(10);
-
-				am_phoneNumber2 = new JTextField();
-				am_phoneNumber2.setBounds(383, 240, 182, 20);
-				mainWindowContentPanel2.add(am_phoneNumber2);
-				am_phoneNumber2.setColumns(10);
-
-				JLabel lblNewLabel_10 = new JLabel("Member ID");
-				lblNewLabel_10.setBounds(85, 45, 182, 14);
-				mainWindowContentPanel2.add(lblNewLabel_10);
-
-				JLabel lblNewLabel_11 = new JLabel("FirstName");
-				lblNewLabel_11.setBounds(85, 103, 173, 14);
-				mainWindowContentPanel2.add(lblNewLabel_11);
-
-				JLabel lblNewLabel_12 = new JLabel("Last Name");
-				lblNewLabel_12.setBounds(85, 162, 182, 14);
-				mainWindowContentPanel2.add(lblNewLabel_12);
-
-				JLabel lblNewLabel_13 = new JLabel("Street");
-				lblNewLabel_13.setBounds(85, 224, 182, 14);
-				mainWindowContentPanel2.add(lblNewLabel_13);
-
-				JLabel lblNewLabel_14 = new JLabel("City");
-				lblNewLabel_14.setBounds(383, 45, 182, 14);
-				mainWindowContentPanel2.add(lblNewLabel_14);
-
-				JLabel lblNewLabel_15 = new JLabel("State");
-				lblNewLabel_15.setBounds(383, 103, 182, 14);
-				mainWindowContentPanel2.add(lblNewLabel_15);
-
-				JLabel lblNewLabel_16 = new JLabel("Zip");
-				lblNewLabel_16.setBounds(383, 162, 182, 14);
-				mainWindowContentPanel2.add(lblNewLabel_16);
-
-				JLabel lblNewLabel_17 = new JLabel("Phone Number");
-				lblNewLabel_17.setBounds(383, 224, 182, 14);
-				mainWindowContentPanel2.add(lblNewLabel_17);
-				frame.getContentPane().add(mainWindowContentPanel2);
-
-				JLabel lblNewLabel_18 = new JLabel("Select Member");
-				lblNewLabel_18.setFont(new Font("Tahoma", Font.BOLD, 12));
-				lblNewLabel_18.setBounds(85, 11, 109, 23);
-				mainWindowContentPanel2.add(lblNewLabel_18);
-
-				JComboBox comboBox1 = new JComboBox();
-				comboBox1.setBounds(191, 12, 267, 22);
-				mainWindowContentPanel2.add(comboBox1);
-
-				JButton btnModifyMemberInitial = new JButton("Modify");
-				btnModifyMemberInitial.addMouseListener(new MouseAdapter() {   				//@Add event to Modify selected member record
-					@Override
-					public void mouseClicked(MouseEvent e) {
-					}
-				});
-				btnModifyMemberInitial.setBounds(468, 11, 97, 23);
-				mainWindowContentPanel2.add(btnModifyMemberInitial);
-				mainWindowContentPanel2.revalidate();
-				mainWindowContentPanel2.repaint();
-				frame.revalidate();
-				frame.repaint();
-				pack();
-					// Working on Edit member Done
-		}
 
 	private void sidePanelAddMember() {
 		LibrarySystem.hideAllWindows();
@@ -348,6 +213,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		AddMember.INSTANCE.setVisible(true);
 		pack();
 	}
+	
 	
 	public void toggleAdminFrame(boolean val) {
 		adminWindow.INSTANCE.setVisible(val);

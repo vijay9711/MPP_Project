@@ -15,6 +15,8 @@ import javax.swing.SwingConstants;
 
 public class EditMember {
 
+	
+	public static final EditMember INSTANCE = new EditMember();
 	private JFrame frame;
 
 	/**
@@ -39,7 +41,20 @@ public class EditMember {
 	public EditMember() {
 		initialize();
 	}
-
+	
+	
+	public void init() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EditMember window = new EditMember();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
