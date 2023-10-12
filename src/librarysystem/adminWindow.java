@@ -181,6 +181,18 @@ public class adminWindow extends JFrame implements LibWindow {
 		JButton btnBookList = new JButton("Book List");
 		btnBookList.setBounds(10, 214, 214, 23);
 		mainWindowButtonePanel.add(btnBookList);
+		
+		JButton btnCheckoutBook = new JButton("Checkout Book");
+		btnCheckoutBook.setBounds(10, 245, 214, 23);
+		mainWindowButtonePanel.add(btnCheckoutBook);
+		
+		JButton btnCheckoutRecord = new JButton("Member Checkout Record");
+		btnCheckoutRecord.setBounds(10, 276, 214, 23);
+		mainWindowButtonePanel.add(btnCheckoutRecord);
+		
+		JButton btnNewButton = new JButton("Overdue BookList");
+		btnNewButton.setBounds(10, 306, 214, 23);
+		mainWindowButtonePanel.add(btnNewButton);
 		pack();
 
 	}
