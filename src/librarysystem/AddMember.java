@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -12,12 +13,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 import javax.swing.SwingConstants;
 
 import business.Address;
 import business.LibraryMember;
 import dataaccess.DataAccessFacade;
+import dataaccess.User;
 
 public class AddMember extends JFrame implements LibWindow {
 
@@ -25,15 +29,29 @@ public class AddMember extends JFrame implements LibWindow {
 	private DataAccessFacade db;
 	private boolean isInitialized = false;
 	private JFrame frame;
-	
-	
+	JTextField am_memberID;
+	JTextField am_firstName;
+	JTextField am_lastName;
+	JTextField am_street;
+	JTextField am_city;
+	JTextField am_state;
+	JTextField am_zip;
+	JTextField am_phoneNumber;
 	public void connectDB() {
 		db = new DataAccessFacade();
 	}
 	public void addMember() {
-		Address address = new Address("St4th", "fairfield", "IOWA", "54638");
-		LibraryMember lb = new LibraryMember("120", "Vijay", "Mano", "7482749372", address);
-		db.saveNewMember(lb);
+		Address address = new Address(am_street.getText(), am_city.getText(), am_state.getText(), am_zip.getText());
+		LibraryMember lb = new LibraryMember(am_memberID.getText(), am_firstName.getText(), am_lastName.getText(), am_phoneNumber.getText(), address);
+		LibraryMember member = db.saveNewMember(lb);
+		StringBuilder st = new StringBuilder();
+		st.append("New Library Member is added successfully!");
+		st.append(member.getFirstName() +" member Id is: " + member.getMemberId());
+		JOptionPane.showMessageDialog(this,st.toString());
+		LibrarySystem.hideAllWindows();
+		toggleAddMemeberFrame(false);
+		adminWindow.INSTANCE.toggleAdminFrame(true);
+		pack();
 	}
 
 	@Override
@@ -59,6 +77,26 @@ public class AddMember extends JFrame implements LibWindow {
 	public void isInitialized(boolean val) {
 		isInitialized = val;
 
+	}
+	public void setData() {
+		connectDB();
+		String memberId = getMemberId();
+		am_memberID.setText(memberId);
+		System.out.println("memberId "+ memberId);
+	}
+	public String getMemberId() {
+		HashMap<String, LibraryMember> member = db.readMemberMap();
+		int id = 0;
+		for(Entry<String, LibraryMember> set :
+            member.entrySet()) {
+			LibraryMember lb = set.getValue();
+			int code = Integer.parseInt(lb.getMemberId());
+			if(code > id) {
+				id = code;
+			}
+		}
+		id += 1;
+		return Integer.toString(id);
 	}
 	/**
 	 * Launch the application.
@@ -101,43 +139,47 @@ public class AddMember extends JFrame implements LibWindow {
 		lblHeader.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblHeader.setBounds(233, 11, 155, 14);
 		mainWindowContentPanel1.add(lblHeader);
+
 		
-		JTextField am_memberID = new JTextField();
+		am_memberID = new JTextField();
 		am_memberID.setBounds(85, 60, 182, 20);
+		am_memberID.setEditable(false);
 		mainWindowContentPanel1.add(am_memberID);
 		am_memberID.setColumns(10);
+		setData();
 		
-		JTextField am_firstName = new JTextField();
+		
+		am_firstName = new JTextField();
 		am_firstName.setBounds(85, 118, 182, 20);
 		mainWindowContentPanel1.add(am_firstName);
 		am_firstName.setColumns(10);
 		
-		JTextField am_lastName = new JTextField();
+		am_lastName = new JTextField();
 		am_lastName.setBounds(85, 177, 182, 20);
 		mainWindowContentPanel1.add(am_lastName);
 		am_lastName.setColumns(10);
 		
-		JTextField am_street = new JTextField();
+		am_street = new JTextField();
 		am_street.setBounds(85, 240, 182, 20);
 		mainWindowContentPanel1.add(am_street);
 		am_street.setColumns(10);
 		
-		JTextField am_city = new JTextField();
+		am_city = new JTextField();
 		am_city.setBounds(383, 60, 182, 20);
 		mainWindowContentPanel1.add(am_city);
 		am_city.setColumns(10);
 		
-		JTextField am_state = new JTextField();
+		am_state = new JTextField();
 		am_state.setBounds(383, 118, 182, 20);
 		mainWindowContentPanel1.add(am_state);
 		am_state.setColumns(10);
 		
-		JTextField am_zip = new JTextField();
+		am_zip = new JTextField();
 		am_zip.setBounds(383, 177, 182, 20);
 		mainWindowContentPanel1.add(am_zip);
 		am_zip.setColumns(10);
 		
-		JTextField am_phoneNumber = new JTextField();
+		am_phoneNumber = new JTextField();
 		am_phoneNumber.setBounds(383, 240, 182, 20);
 		mainWindowContentPanel1.add(am_phoneNumber);
 		am_phoneNumber.setColumns(10);
@@ -179,7 +221,8 @@ public class AddMember extends JFrame implements LibWindow {
 		JButton btnAddMemberFinal = new JButton("Add This Member");
 		btnAddMemberFinal.addMouseListener(new MouseAdapter() {							//@dip06ece: Add Member function here
 			@Override
-			public void mouseClicked(MouseEvent e) {									//@vijay: ###
+			public void mouseClicked(MouseEvent e) {
+				addMember();															//@vijay: ###
 			}
 		});
 		btnAddMemberFinal.setBounds(430, 311, 135, 23);
@@ -196,8 +239,14 @@ public class AddMember extends JFrame implements LibWindow {
 		@Override
 		public void actionPerformed(ActionEvent evt) {
 			LibrarySystem.hideAllWindows();
+			toggleAddMemeberFrame(false);
 			adminWindow.INSTANCE.toggleAdminFrame(true);
     		pack();
 		}
+	}
+	
+	public void toggleAddMemeberFrame(boolean val) {
+		AddMember.INSTANCE.setVisible(val);
+		frame.setVisible(val);
 	}
 }

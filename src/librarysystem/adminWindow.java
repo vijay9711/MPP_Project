@@ -340,8 +340,10 @@ public class adminWindow extends JFrame implements LibWindow {
 		}
 
 	private void sidePanelAddMember() {
+		LibrarySystem.hideAllWindows();
 		toggleAdminFrame(false);
 		AddMember.INSTANCE.init();
+//		AddMember.INSTANCE.setData();
 		Util.centerFrameOnDesktop(AddMember.INSTANCE);
 		AddMember.INSTANCE.setVisible(true);
 		pack();
