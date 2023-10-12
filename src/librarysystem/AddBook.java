@@ -133,7 +133,8 @@ public class AddBook {
 		btnAddBook.setBounds(460, 320, 127, 23);
 		frame.getContentPane().add(btnAddBook);
 		
-		lblNewLabel_5 = new JLabel("Max. Checkout Time");
+		lblNewLabel_5 = new JLabel("Max. Checkout Days");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblNewLabel_5.setBounds(453, 100, 127, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
