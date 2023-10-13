@@ -34,7 +34,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 		LoginWindow.INSTANCE,
 		AllMemberIdsWindow.INSTANCE,	
 		AllBookIdsWindow.INSTANCE,
-		adminWindow.INSTANCE,
+//		adminWindow.INSTANCE,
 		AddMember.INSTANCE,
 		AddBook.INSTANCE,
 	};

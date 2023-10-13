@@ -53,7 +53,7 @@ public class LoginWindow extends JFrame implements LibWindow {
 	private JButton loginButton;
 	private JButton logoutButton;
 	
-	
+	public static String person;
 	
 	
 	public boolean isInitialized() {
@@ -192,8 +192,9 @@ public class LoginWindow extends JFrame implements LibWindow {
     	public static void loginToLibrary(String text) {
 //    		LibrarySystem.hideAllWindows();
     		toggleLoginFrame(false);
+    		person = text;
     		adminWindow.INSTANCE.init();
-    		adminWindow.INSTANCE.loginPerson(text);
+//    		adminWindow.INSTANCE.loginPerson(text);
 			Util.centerFrameOnDesktop(adminWindow.INSTANCE);
 			adminWindow.INSTANCE.setVisible(true);
     	}

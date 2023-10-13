@@ -24,13 +24,13 @@ import java.util.Arrays;
 
 public class adminWindow extends JFrame implements LibWindow {
 
-	public static final adminWindow INSTANCE = new adminWindow("default");
+	public static final adminWindow INSTANCE = new adminWindow();
 	private DataAccessFacade db;
 	private boolean isInitialized = false;
 	public String person = "default";
 	JPanel mainWindowContentPanel1;
 	JPanel mainWindowContentPanel2;
-
+	
 	private JFrame frame;
 
 	private JTextField am_memberID2;
@@ -60,7 +60,8 @@ public class adminWindow extends JFrame implements LibWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					adminWindow window = new adminWindow(person);
+					person = LoginWindow.INSTANCE.person;
+					adminWindow window = new adminWindow();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -105,21 +106,23 @@ public class adminWindow extends JFrame implements LibWindow {
 	/**
 	 * Create the application.
 	 */
-	public adminWindow(String user) {
-		initialize(user);
-		buttonActivate(user);
+	public adminWindow() {
+		person = LoginWindow.INSTANCE.person;
+		initialize();
+		buttonActivate();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	public void buttonActivate(String user) {
-		if(user.equals("Admin")) {
+	public void buttonActivate() {
+		person = LoginWindow.INSTANCE.person;
+		if(person.equals("Admin")) {
 			btnOverdueBooks.setVisible(false);
 			btnCheckoutRecord.setVisible(false);
 			btnCheckoutBook.setVisible(false);
 		}
-		if(user.equals("Librarian")) {
+		if(person.equals("Librarian")) {
 			btnAddMember.setVisible(false);
 			btnEditMember.setVisible(false);
 			btnRemoveMember.setVisible(false);
@@ -129,7 +132,8 @@ public class adminWindow extends JFrame implements LibWindow {
 		
 		
 	}
-	private void initialize(String user) {
+	private void initialize() {
+		person = LoginWindow.INSTANCE.person;
 		frame = new JFrame();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();				 	 //@dip06ec: Calculating screen dimension
 		frame.setBounds(350, 150, 280, 520);	 	//@dip06ece: Setting frame size to full screen
@@ -148,7 +152,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mainWindowTextePanel.add(lblNewLabel);
 
-		lblNewLabel_1 = new JLabel(user);
+		lblNewLabel_1 = new JLabel(person);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(8, 31, 217, 15);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 12));
