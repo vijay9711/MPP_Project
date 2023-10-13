@@ -185,6 +185,12 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowButtonePanel.add(btnAddCopy);
 
 		JButton btnBookList = new JButton("Book List");
+		btnBookList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sidePanelBookList();
+			}
+		});
 		btnBookList.setBounds(10, 214, 214, 23);
 		mainWindowButtonePanel.add(btnBookList);
 		
@@ -231,7 +237,15 @@ public class adminWindow extends JFrame implements LibWindow {
 		MemberList.INSTANCE.setVisible(true);
 		pack();
 	}
-	
+	private void sidePanelBookList() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		BookList.INSTANCE.init();
+//		BookList.INSTANCE.setData();
+		Util.centerFrameOnDesktop(BookList.INSTANCE);
+		BookList.INSTANCE.setVisible(true);
+		pack();
+	}
 	public void toggleAdminFrame(boolean val) {
 		adminWindow.INSTANCE.setVisible(val);
 		frame.setVisible(val);
