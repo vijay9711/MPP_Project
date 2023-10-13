@@ -50,6 +50,13 @@ public class DataAccessFacade implements DataAccess {
 		saveToStorage(StorageType.BOOKS, books);
 	}
 	
+	public boolean addAuthor(Author author) {
+		TestData ts = new TestData();
+		ts.allAuthors.add(author);
+		return true;
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {
 		//Returns a Map with name/value pairs being

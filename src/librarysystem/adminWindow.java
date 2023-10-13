@@ -85,11 +85,6 @@ public class adminWindow extends JFrame implements LibWindow {
 
 	}
 
-	public void addBook() {
-//		List<Author> author = Arrays.asList();
-		Book newBook = new Book("2323", "Java 5", 7, null);
-		db.addNewBook(null);
-	}
 
 	public void checkout() {
 
@@ -171,6 +166,13 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowButtonePanel.add(btnMemberList);
 
 		JButton btnAddBook = new JButton("Add Book");
+		btnAddBook.addMouseListener(new MouseAdapter() {					
+			@Override
+			public void mouseClicked(MouseEvent e) {				//@dip06ece: Actions to add new member
+				showAddBook();
+				
+			}
+		});
 		btnAddBook.setBounds(10, 153, 214, 23);
 		mainWindowButtonePanel.add(btnAddBook);
 
@@ -185,7 +187,14 @@ public class adminWindow extends JFrame implements LibWindow {
 
 	}
 
-
+	private void showAddBook() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		AddBook.INSTANCE.init();
+		Util.centerFrameOnDesktop(AddBook.INSTANCE);
+		AddBook.INSTANCE.setVisible(true);
+		pack();
+	}
 	private void sidePanelAddMember() {
 		LibrarySystem.hideAllWindows();
 		toggleAdminFrame(false);

@@ -18,12 +18,15 @@ final public class Book implements Serializable {
 	private String isbn;
 	private String title;
 	private int maxCheckoutLength;
-	public Book(String isbn, String title, int maxCheckoutLength, List<Author> authors) {
+	public Book(String isbn, String title, int maxCheckoutLength, List<Author> authors, int copy) {
 		this.isbn = isbn;
 		this.title = title;
 		this.maxCheckoutLength = maxCheckoutLength;
 		this.authors = Collections.unmodifiableList(authors);
 		copies = new BookCopy[]{new BookCopy(this, 1, true)};	
+		for(int i = 1; i < copy; i++) {
+			addCopy();
+		}
 	}
 	
 	public void updateCopies(BookCopy copy) {

@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ed8cc27-f7eb-4dcc-8a59-3da12a8f8e41" name="Changes" comment="add member is done" />
+    <list default="true" id="5ed8cc27-f7eb-4dcc-8a59-3da12a8f8e41" name="Changes" comment="add member is done">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/business/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/business/Author.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataaccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/DataAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataaccess/DataAccessFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/DataAccessFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataaccess/TestData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/TestData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataaccess/storage/BOOKS" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/storage/BOOKS" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataaccess/storage/MEMBERS" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/storage/MEMBERS" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/AddAuthor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/AddAuthor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/AddBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/AddBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/LibrarySystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/LibrarySystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/adminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/adminWindow.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696950609309</updated>
       <workItem from="1696950610682" duration="1052000" />
-      <workItem from="1697062218317" duration="10869000" />
+      <workItem from="1697062218317" duration="12665000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -169,7 +181,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697143095850</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add member is done">
+      <option name="closed" value="true" />
+      <created>1697143663129</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1697143663129</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add member is done">
+      <option name="closed" value="true" />
+      <created>1697143704083</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1697143704083</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
