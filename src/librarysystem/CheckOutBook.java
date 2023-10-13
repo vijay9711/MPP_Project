@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
 
-public class CheckOutBook {
+import librarysystem.AddMember.BackToMainListener;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -108,4 +108,21 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 		frame.setVisible(val);
 	}
 
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isInitialized() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void isInitialized(boolean val) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -14,6 +14,9 @@ import business.Book;
 import dataaccess.DataAccessFacade;
 import librarysystem.AddMember.BackToMainListener;
 
+
+import librarysystem.AddMember.BackToMainListener;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -76,7 +79,7 @@ public class AddBook extends JFrame implements LibWindow {
 	/**
 	 * Create the application.
 	 */
-	
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -100,7 +103,6 @@ public class AddBook extends JFrame implements LibWindow {
 		bookTitle = new JTextField();
 		bookTitle.setBounds(51, 58, 536, 20);
 		bookTitle.setName("Book Title");
-		bookTitle.setBounds(51, 58, 536, 20);
 		frame.getContentPane().add(bookTitle);
 		bookTitle.setColumns(10);
 		
@@ -136,6 +138,7 @@ public class AddBook extends JFrame implements LibWindow {
 		bookCopyCount.setName("Book copy count");
 		
 		bookCopyCount.setBounds(330, 117, 113, 20);
+		bookCopyCount.setText("Book Copy Count");
 		frame.getContentPane().add(bookCopyCount);
 		bookCopyCount.setColumns(10);
 		
@@ -174,10 +177,11 @@ public class AddBook extends JFrame implements LibWindow {
 		lblNewLabel_5.setBounds(453, 100, 127, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
-		textField = new JTextField();
-		textField.setBounds(453, 117, 134, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		bookMaxCheckoutDays = new JTextField();
+		bookMaxCheckoutDays.setText("Maximum Checkout Days");
+		bookMaxCheckoutDays.setBounds(453, 117, 134, 20);
+		frame.getContentPane().add(bookMaxCheckoutDays);
+		bookMaxCheckoutDays.setColumns(10);
 		
 		// back button to move back to main menu
 		JButton backButton = new JButton("Back to Main");

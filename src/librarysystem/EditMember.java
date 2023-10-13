@@ -41,7 +41,47 @@ public class EditMember extends JFrame implements LibWindow {
 	private JTextField am_phoneNumber;
 	
 	private JFrame frame;
-
+	
+	public void connectDB() {
+		db = new DataAccessFacade();
+	}
+	public DefaultComboBoxModel generateComboBoxModel() {
+		connectDB();															// Connect to Database
+		HashMap<String, LibraryMember> membermap = db.readMemberMap();			// Reading from Hash Map
+		Vector comboBoxItems=new Vector();										// Creating a vector
+		for(Entry<String, LibraryMember> item:membermap.entrySet()) {			
+			//System.out.println(item.getValue().getMemberId()+ " | "+item.getValue().getFirstName()+" "+item.getValue().getLastName());
+			comboBoxItems.add("["+item.getValue().getMemberId()+"] | "+item.getValue().getFirstName()+" "+item.getValue().getLastName());
+		}
+		DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
+		return model;
+	}
+	public LibraryMember returnMember(String temp) {										// Returns selected Library Member
+		connectDB();
+		HashMap<String, LibraryMember> membermap = db.readMemberMap();
+		for(Entry<String, LibraryMember> item:membermap.entrySet()) {			
+			if ((item.getValue().getMemberId()).equals(temp)) {
+				//String memberDetails[] = {item.getValue().getMemberId(), item.getValue().getFirstName()};
+				return new LibraryMember(item.getValue().getMemberId(),item.getValue().getFirstName(),item.getValue().getLastName(),item.getValue().getTelephone(),item.getValue().getAddress());
+			}
+			
+		}
+		return null; // This will not be executed
+		
+	}
+	
+	public void modifyMemberEntry() {						// Rewriting edited data to HashMap
+		Address address = new Address(am_street.getText(), am_city.getText(), am_state.getText(), am_zip.getText());
+		LibraryMember lb = new LibraryMember(am_memberID.getText(), am_firstName.getText(), am_lastName.getText(), am_phoneNumber.getText(), address);
+		LibraryMember member = db.saveNewMember(lb);
+		StringBuilder st = new StringBuilder();
+		st.append("Library Member data of ID "+am_memberID.getText()+" is Modified Successfully!");
+		JOptionPane.showMessageDialog(this,st.toString());
+		LibrarySystem.hideAllWindows();
+		toggleAddMemeberFrame(false);
+		adminWindow.INSTANCE.toggleAdminFrame(true);
+		pack();
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -83,7 +123,7 @@ public class EditMember extends JFrame implements LibWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 640, 420);
+		frame.setBounds(450, 150, 640, 420);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel mainWindowContentPanel1 = new JPanel();
@@ -103,10 +143,12 @@ public class EditMember extends JFrame implements LibWindow {
 		JComboBox comboBox1 = new JComboBox(generateComboBoxModel()); // Generating combo box items from generated model
 		comboBox1.setBounds(188, 43, 267, 22);
 		mainWindowContentPanel1.add(comboBox1);
+		// Populating member list 
+		
 				
 		JButton btnModifyMemberInitial = new JButton("Modify");
 		btnModifyMemberInitial.addMouseListener(new MouseAdapter() {   				//@Add event to Modify selected member record
-			@Override
+			@Override																
 			public void mouseClicked(MouseEvent e) {
 				String item = comboBox1.getSelectedItem().toString();
 				String temp = item.substring(1,5);									// Need to change if Library member reaches 9999
@@ -135,43 +177,43 @@ public class EditMember extends JFrame implements LibWindow {
 		lblHeader.setBounds(233, 11, 155, 14);
 		mainWindowContentPanel1.add(lblHeader);
 		
-		JTextField am_memberID = new JTextField();
+		am_memberID = new JTextField();
 		am_memberID.setEditable(false);
 		am_memberID.setBounds(85, 100, 182, 20);
 		mainWindowContentPanel1.add(am_memberID);
 		am_memberID.setColumns(10);
 		
-		JTextField am_firstName = new JTextField();
+		am_firstName = new JTextField();
 		am_firstName.setBounds(85, 159, 182, 20);
 		mainWindowContentPanel1.add(am_firstName);
 		am_firstName.setColumns(10);
 		
-		JTextField am_lastName = new JTextField();
+		am_lastName = new JTextField();
 		am_lastName.setBounds(85, 219, 182, 20);
 		mainWindowContentPanel1.add(am_lastName);
 		am_lastName.setColumns(10);
 		
-		JTextField am_street = new JTextField();
+		am_street = new JTextField();
 		am_street.setBounds(85, 277, 182, 20);
 		mainWindowContentPanel1.add(am_street);
 		am_street.setColumns(10);
 		
-		JTextField am_city = new JTextField();
+		am_city = new JTextField();
 		am_city.setBounds(383, 100, 182, 20);
 		mainWindowContentPanel1.add(am_city);
 		am_city.setColumns(10);
 		
-		JTextField am_state = new JTextField();
+		am_state = new JTextField();
 		am_state.setBounds(383, 159, 182, 20);
 		mainWindowContentPanel1.add(am_state);
 		am_state.setColumns(10);
 		
-		JTextField am_zip = new JTextField();
+		am_zip = new JTextField();
 		am_zip.setBounds(383, 219, 182, 20);
 		mainWindowContentPanel1.add(am_zip);
 		am_zip.setColumns(10);
 		
-		JTextField am_phoneNumber = new JTextField();
+		am_phoneNumber = new JTextField();
 		am_phoneNumber.setBounds(383, 277, 182, 20);
 		mainWindowContentPanel1.add(am_phoneNumber);
 		am_phoneNumber.setColumns(10);
