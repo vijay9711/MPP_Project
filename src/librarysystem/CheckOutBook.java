@@ -4,12 +4,17 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.Book;
 
 import javax.swing.SwingConstants;
 
+import business.LibraryMember;
+import dataaccess.DataAccessFacade;
 import librarysystem.AddMember.BackToMainListener;
 
 import javax.swing.JTextField;
@@ -22,7 +27,9 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 	private JTextField checkoutISBN;
 	private JTextField checkoutMemberID;
 	private JTable table;
-	
+	private boolean isInitialized = false;
+
+	private DataAccessFacade db;
 
 	/**
 	 * Launch the application.
@@ -82,6 +89,7 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 		
 		JButton btnCheckOut = new JButton("Checkout");
 		btnCheckOut.setBounds(474, 70, 120, 23);
+		btnCheckOut.addActionListener(new checkoutStatus());
 		frame.getContentPane().add(btnCheckOut);
 		
 		JLabel lblCheckOutMsg = new JLabel("Checkout Status Message");
@@ -103,6 +111,30 @@ public class CheckOutBook  extends JFrame implements LibWindow{
     		pack();
 		}
 	}
+	public void connectDB() {
+		db = new DataAccessFacade();
+	}
+	class checkoutStatus implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			connectDB();
+			business.Book b = db.getBook(checkoutISBN.getText());
+			LibraryMember member = db.getMember(checkoutMemberID.getText());
+			StringBuilder sb = new StringBuilder();
+			if(b == null) {
+				sb.append("The Book ISBN id("+checkoutISBN.getText()+") is not found in DataBase." +"\n");
+			}
+			if(member == null) {
+				sb.append("The Member id("+checkoutISBN.getText()+") is not found in DataBase." +"\n");
+			}
+			if(b == null | member == null) {
+				sb.append("Please try again!");
+				JOptionPane.showMessageDialog(CheckOutBook.INSTANCE,sb.toString());
+			}
+		}
+		
+	}
 	public void toggleAddMemeberFrame(boolean val) {
 		AddMember.INSTANCE.setVisible(val);
 		frame.setVisible(val);
@@ -113,16 +145,15 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	@Override
 	public boolean isInitialized() {
-		// TODO Auto-generated method stub
-		return false;
+		return isInitialized;
 	}
 
 	@Override
 	public void isInitialized(boolean val) {
-		// TODO Auto-generated method stub
-		
+		isInitialized = val;
+
 	}
 }

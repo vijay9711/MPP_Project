@@ -56,6 +56,29 @@ public class DataAccessFacade implements DataAccess {
 		return true;
 	}
 	
+	public Book getBook(String id) {
+		HashMap<String,Book> booksList = readBooksMap();
+		for(Entry<String, Book> item : booksList.entrySet()) {
+			Book b = item.getValue();
+			if(b.getIsbn() == id) {
+				return b;
+			}
+		}
+		return null;
+	}
+
+
+
+	public LibraryMember getMember(String id) {
+		HashMap<String,LibraryMember> booksList = readMemberMap();
+		for(Entry<String, LibraryMember> item : booksList.entrySet()) {
+			LibraryMember b = item.getValue();
+			if(b.getMemberId() == id) {
+				return b;
+			}
+		}
+		return null;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {
@@ -184,6 +207,7 @@ public class DataAccessFacade implements DataAccess {
 		}
 		private static final long serialVersionUID = 5399827794066637059L;
 	}
+
 	
 	
 	

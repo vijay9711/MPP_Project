@@ -42,16 +42,12 @@ public class AddBook extends JFrame implements LibWindow {
 	private JTextField bookIsbn;
 	private JTextField bookAvailability;
 	private JTextField bookCopyCount;
-//	private JList bookAuthorList;
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
 	private JTextField textField;
-//	private String authorList[] = {};
 	private static JLabel authorList;
-//	DefaultListModel<String> listModel = new DefaultListModel<>();
-//	 JList<String> bookAuthorList = new JList<>(listModel);
 	
-	 public List<JTextComponent> fieldList;
+	 public List<JTextField> fieldList;
 	 
 	 public List<Author> authList = new ArrayList<>();
 	 
@@ -63,26 +59,19 @@ public class AddBook extends JFrame implements LibWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddBook window = new AddBook();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					AddBook window = new AddBook();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
-	/**
-	 * Create the application.
-	 */
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(450, 150, 640, 420);
@@ -138,7 +127,6 @@ public class AddBook extends JFrame implements LibWindow {
 		bookCopyCount.setName("Book copy count");
 		
 		bookCopyCount.setBounds(330, 117, 113, 20);
-		bookCopyCount.setText("Book Copy Count");
 		frame.getContentPane().add(bookCopyCount);
 		bookCopyCount.setColumns(10);
 		
@@ -178,17 +166,17 @@ public class AddBook extends JFrame implements LibWindow {
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		bookMaxCheckoutDays = new JTextField();
-		bookMaxCheckoutDays.setText("Maximum Checkout Days");
+		bookMaxCheckoutDays.setName("Maximum Checkout Days");
 		bookMaxCheckoutDays.setBounds(453, 117, 134, 20);
 		frame.getContentPane().add(bookMaxCheckoutDays);
 		bookMaxCheckoutDays.setColumns(10);
 		
-		// back button to move back to main menu
+//		back to main menu
 		JButton backButton = new JButton("Back to Main");
 		backButton.addActionListener(new BackToMainListener());
 		backButton.setBounds(50, 320, 135, 23);
 		frame.add(backButton);
-		fieldList = Arrays.asList(bookTitle,bookIsbn,bookAvailability,bookCopyCount,textField);
+		fieldList = Arrays.asList(bookTitle,bookIsbn,bookAvailability,bookCopyCount,bookMaxCheckoutDays);
 	}
 	public AddBook() {
 		initialize();
@@ -217,7 +205,6 @@ public class AddBook extends JFrame implements LibWindow {
 		AddBook.INSTANCE.authList.add(author);
 		authorList.setText(authName);
 		AddBook.INSTANCE.frame.repaint();
-		System.out.println(authorList.getText() + " author list "+AddBook.INSTANCE.authList.toString());
 	}
 	@Override
 	public boolean isInitialized() {
@@ -240,15 +227,17 @@ public class AddBook extends JFrame implements LibWindow {
 	
 	public void AddBookHandler() {
 		if(validateBookForm() && AddBook.INSTANCE.authList.size() > 0) {
+			connectDB();
 			System.out.println("author list "+AddBook.INSTANCE.authList.toString());
-			Book newBook = new Book(bookIsbn.getText(), bookTitle.getText(), Integer.parseInt(textField.getText()), authList, Integer.parseInt(bookCopyCount.getText()));
+			Book newBook = new Book(bookIsbn.getText(), bookTitle.getText(), Integer.parseInt(bookMaxCheckoutDays.getText()), AddBook.INSTANCE.authList, Integer.parseInt(bookCopyCount.getText()));
+			db.addNewBook(newBook);
 			StringBuilder sb = new StringBuilder();
 			sb.append("New book added successfully! \n");
 			sb.append("Book name: " + newBook.getTitle() + "\n");
-			sb.append("ISBN: " + newBook.getIsbn());
+			sb.append("ISBN: " + newBook.getIsbn()+ "\n");
 			sb.append("No of copies: " + newBook.getNumCopies() + "\n");
-			
-			toggleAddBookFrame(false);
+			JOptionPane.showMessageDialog(this,sb.toString());
+			new BackToMainListener();
 		}
 	}	
 	

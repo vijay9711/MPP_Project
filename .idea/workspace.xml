@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ed8cc27-f7eb-4dcc-8a59-3da12a8f8e41" name="Changes" comment="add new author and book">
-      <change afterPath="$PROJECT_DIR$/src/librarysystem/BookList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/librarysystem/CheckoutRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/librarysystem/MemberCheckoutRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/librarysystem/MemberList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/librarysystem/AddBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/AddBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/librarysystem/AddMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/AddMember.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/librarysystem/CheckOutBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/CheckOutBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/librarysystem/EditMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/EditMember.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/librarysystem/adminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/adminWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging master",
+    "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -97,7 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696950609309</updated>
       <workItem from="1696950610682" duration="1052000" />
-      <workItem from="1697062218317" duration="13701000" />
+      <workItem from="1697062218317" duration="14413000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -203,7 +195,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697219893680</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add new author and book">
+      <option name="closed" value="true" />
+      <created>1697220957177</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1697220957177</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add new author and book">
+      <option name="closed" value="true" />
+      <created>1697220967251</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1697220967251</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +228,11 @@
         <entry key="Branch">
           <value>
             <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="origin/master" />
@@ -246,24 +259,6 @@
         <entry key="28b0e16e-3646-4c9d-ac8a-94ba287a3635">
           <value>
             <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/master" />
-                      </list>
-                    </value>
-                  </entry>
-                  <entry key="user">
-                    <value>
-                      <list>
-                        <option value="*" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
               <option name="TEXT_FILTER_SETTINGS">
                 <TextFilterSettings>
                   <option name="REGEX" value="true" />
