@@ -230,11 +230,11 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnBookList.setBounds(10, 214, 214, 23);
 		mainWindowButtonePanel.add(btnBookList);
 		
-		JButton btnCheckoutBook = new JButton("Checkout Book");
+		btnCheckoutBook = new JButton("Checkout Book");
 		btnCheckoutBook.setBounds(10, 245, 214, 23);
 		mainWindowButtonePanel.add(btnCheckoutBook);
 		
-		JButton btnCheckoutRecord = new JButton("Member Checkout Record");
+		btnCheckoutRecord = new JButton("Member Checkout Record");
 		btnCheckoutRecord.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
