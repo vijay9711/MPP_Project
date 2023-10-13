@@ -199,6 +199,12 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowButtonePanel.add(btnCheckoutBook);
 		
 		JButton btnCheckoutRecord = new JButton("Member Checkout Record");
+		btnCheckoutRecord.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sidePanelMemberCheckoutRecordList();
+			}
+		});
 		btnCheckoutRecord.setBounds(10, 276, 214, 23);
 		mainWindowButtonePanel.add(btnCheckoutRecord);
 		
@@ -244,6 +250,15 @@ public class adminWindow extends JFrame implements LibWindow {
 //		BookList.INSTANCE.setData();
 		Util.centerFrameOnDesktop(BookList.INSTANCE);
 		BookList.INSTANCE.setVisible(true);
+		pack();
+	}
+	private void sidePanelMemberCheckoutRecordList() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		MemberCheckoutRecord.INSTANCE.init();
+//		MemberCheckoutRecord.INSTANCE.setData();
+		Util.centerFrameOnDesktop(MemberCheckoutRecord.INSTANCE);
+		MemberCheckoutRecord.INSTANCE.setVisible(true);
 		pack();
 	}
 	public void toggleAdminFrame(boolean val) {
