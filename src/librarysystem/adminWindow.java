@@ -156,7 +156,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnEditMember.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {       //@dip06ece: Need to add functions to edit member
-				
+				sidePanelModifyMember();
 			}
 		});
 		btnEditMember.setBounds(10, 63, 214, 23);
@@ -207,7 +207,15 @@ public class adminWindow extends JFrame implements LibWindow {
 		AddMember.INSTANCE.setVisible(true);
 		pack();
 	}
-	
+	private void sidePanelModifyMember() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		EditMember.INSTANCE.init();
+//		EditMember.INSTANCE.setData();
+		Util.centerFrameOnDesktop(EditMember.INSTANCE);
+		EditMember.INSTANCE.setVisible(true);
+		pack();
+	}
 	
 	public void toggleAdminFrame(boolean val) {
 		adminWindow.INSTANCE.setVisible(val);
