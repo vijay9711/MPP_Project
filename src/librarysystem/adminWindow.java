@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.text.View;
 
 import business.Address;
 import business.Book;
@@ -41,6 +42,18 @@ public class adminWindow extends JFrame implements LibWindow {
 	private JTextField am_zip2;
 	private JTextField am_phoneNumber2;
 	private JLabel lblNewLabel_1;
+	
+	private JButton btnLogOutButton;
+	private JButton btnAddMember;
+	private JButton btnEditMember;
+	private JButton btnRemoveMember;
+	private JButton btnMemberList;
+	private JButton btnAddBook;
+	private JButton btnAddCopy;
+	private JButton btnBookList;
+	private JButton btnCheckoutBook;
+	private JButton btnCheckoutRecord;
+	private JButton btnOverdueBooks;
 
 	@Override
 	public void init() {
@@ -94,11 +107,28 @@ public class adminWindow extends JFrame implements LibWindow {
 	 */
 	public adminWindow(String user) {
 		initialize(user);
+		buttonActivate(user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	public void buttonActivate(String user) {
+		if(user.equals("Admin")) {
+			btnOverdueBooks.setVisible(false);
+			btnCheckoutRecord.setVisible(false);
+			btnCheckoutBook.setVisible(false);
+		}
+		if(user.equals("Librarian")) {
+			btnAddMember.setVisible(false);
+			btnEditMember.setVisible(false);
+			btnRemoveMember.setVisible(false);
+			btnAddBook.setVisible(false);
+			btnAddCopy.setVisible(false);
+		}
+		
+		
+	}
 	private void initialize(String user) {
 		frame = new JFrame();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();				 	 //@dip06ec: Calculating screen dimension
@@ -106,18 +136,22 @@ public class adminWindow extends JFrame implements LibWindow {
 														//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);									 //@dip06ece: Maximize the window
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		frame.getContentPane().setLayout(null);
-
+		
 		JPanel mainWindowTextePanel = new JPanel();
 		mainWindowTextePanel.setBounds(10, 11, 234, 59);
 		frame.getContentPane().add(mainWindowTextePanel);
+		mainWindowTextePanel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Library Management System");
+		lblNewLabel.setBounds(8, 5, 217, 21);
 		lblNewLabel.setFont(new Font("Takoma", Font.BOLD, 16));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mainWindowTextePanel.add(lblNewLabel);
 
 		lblNewLabel_1 = new JLabel(user);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 14));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(8, 31, 217, 15);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		mainWindowTextePanel.add(lblNewLabel_1);
 
 		JPanel mainWindowButtonePanel = new JPanel();
@@ -125,7 +159,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		frame.getContentPane().add(mainWindowButtonePanel);
 		mainWindowButtonePanel.setLayout(null);
 
-		JButton btnLogOutButton = new JButton("Log Out ");
+		btnLogOutButton = new JButton("Log Out ");
 		btnLogOutButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {						//@dip06ece: On Mouse click program exits
@@ -135,7 +169,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnLogOutButton.setBounds(10, 5, 214, 23);
 		mainWindowButtonePanel.add(btnLogOutButton);
 
-		JButton btnAddMember = new JButton("Add Member");
+		btnAddMember = new JButton("Add Member");
 		// Adding new members to Database
 		btnAddMember.addMouseListener(new MouseAdapter() {					
 			@Override
@@ -147,7 +181,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnAddMember.setBounds(10, 33, 214, 23);
 		mainWindowButtonePanel.add(btnAddMember);
 
-		JButton btnEditMember = new JButton("Edit Member");
+		btnEditMember = new JButton("Edit Member");
 		btnEditMember.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {       //@dip06ece: Need to add functions to edit member
@@ -157,11 +191,11 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnEditMember.setBounds(10, 63, 214, 23);
 		mainWindowButtonePanel.add(btnEditMember);
 
-		JButton btnRemoveMember = new JButton("Remove Member");
+		btnRemoveMember = new JButton("Remove Member");
 		btnRemoveMember.setBounds(10, 94, 214, 23);
 		mainWindowButtonePanel.add(btnRemoveMember);
 
-		JButton btnMemberList = new JButton("Member List");
+		btnMemberList = new JButton("Member List");
 		btnMemberList.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {		//@dip06ece: Need to add Member List Functionality
@@ -171,7 +205,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnMemberList.setBounds(10, 123, 214, 23);
 		mainWindowButtonePanel.add(btnMemberList);
 
-		JButton btnAddBook = new JButton("Add Book");
+		btnAddBook = new JButton("Add Book");
 		btnAddBook.addMouseListener(new MouseAdapter() {					
 			@Override
 			public void mouseClicked(MouseEvent e) {				//@dip06ece: Actions to add new member
@@ -182,11 +216,11 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnAddBook.setBounds(10, 153, 214, 23);
 		mainWindowButtonePanel.add(btnAddBook);
 
-		JButton btnAddCopy = new JButton("Add Copy");
+		btnAddCopy = new JButton("Add Copy");
 		btnAddCopy.setBounds(10, 184, 214, 23);
 		mainWindowButtonePanel.add(btnAddCopy);
 
-		JButton btnBookList = new JButton("Book List");
+		btnBookList = new JButton("Book List");
 		btnBookList.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -210,9 +244,11 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnCheckoutRecord.setBounds(10, 276, 214, 23);
 		mainWindowButtonePanel.add(btnCheckoutRecord);
 		
-		JButton btnNewButton = new JButton("Overdue BookList");
-		btnNewButton.setBounds(10, 306, 214, 23);
-		mainWindowButtonePanel.add(btnNewButton);
+		btnOverdueBooks = new JButton("Overdue BookList");
+		btnOverdueBooks.setBounds(10, 306, 214, 23);
+		mainWindowButtonePanel.add(btnOverdueBooks);
+		
+		
 		pack();
 
 	}
