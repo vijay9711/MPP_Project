@@ -209,13 +209,15 @@ public class LoginWindow extends JFrame implements LibWindow {
     			switch(result) {
 	    			case "ADMIN":
 	    				JOptionPane.showMessageDialog(this,"Successful Login to admin");
-	    				loginToLibrary("Librarian");
+	    				loginToLibrary("Admin");
 	    				break;
 	    			case "BOTH": 
 	    				JOptionPane.showMessageDialog(this,"Successful Login to both");
+	    				loginToLibrary("Admin & Librarian");
 	    				break;
 	    			case "LIBRARIAN":
 	    				JOptionPane.showMessageDialog(this,"Successful Login to librarian");
+	    				loginToLibrary("Librarian");
 	    				break;
 	    			default:
 	    				JOptionPane.showMessageDialog(this, "Incorrect username or password. Please try again!");
