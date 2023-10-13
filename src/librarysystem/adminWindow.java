@@ -167,6 +167,12 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowButtonePanel.add(btnRemoveMember);
 
 		JButton btnMemberList = new JButton("Member List");
+		btnMemberList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {		//@dip06ece: Need to add Member List Functionality
+				sidePanelMemberList();
+			}
+		});
 		btnMemberList.setBounds(10, 123, 214, 23);
 		mainWindowButtonePanel.add(btnMemberList);
 
@@ -214,6 +220,15 @@ public class adminWindow extends JFrame implements LibWindow {
 //		EditMember.INSTANCE.setData();
 		Util.centerFrameOnDesktop(EditMember.INSTANCE);
 		EditMember.INSTANCE.setVisible(true);
+		pack();
+	}
+	private void sidePanelMemberList() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		MemberList.INSTANCE.init();
+//		MemberList.INSTANCE.setData();
+		Util.centerFrameOnDesktop(MemberList.INSTANCE);
+		MemberList.INSTANCE.setVisible(true);
 		pack();
 	}
 	
