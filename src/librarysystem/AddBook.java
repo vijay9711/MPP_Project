@@ -55,6 +55,8 @@ public class AddBook extends JFrame implements LibWindow {
 	public void connectDB() {
 		db = new DataAccessFacade();
 	}
+	private JTextField bookMaxCheckoutDays;
+
 	/**
 	 * Launch the application.
 	 */
@@ -80,7 +82,7 @@ public class AddBook extends JFrame implements LibWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 640, 420);
+		frame.setBounds(450, 150, 640, 420);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -96,6 +98,7 @@ public class AddBook extends JFrame implements LibWindow {
 		frame.getContentPane().add(lblNewLabel);
 		
 		bookTitle = new JTextField();
+		bookTitle.setBounds(51, 58, 536, 20);
 		bookTitle.setName("Book Title");
 		bookTitle.setBounds(51, 58, 536, 20);
 		frame.getContentPane().add(bookTitle);

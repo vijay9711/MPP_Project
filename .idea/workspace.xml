@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ed8cc27-f7eb-4dcc-8a59-3da12a8f8e41" name="Changes" comment="add member is done">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/business/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/business/Author.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataaccess/DataAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/DataAccess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataaccess/DataAccessFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/DataAccessFacade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataaccess/TestData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/TestData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataaccess/storage/BOOKS" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/storage/BOOKS" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataaccess/storage/MEMBERS" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/storage/MEMBERS" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/librarysystem/AddAuthor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/AddAuthor.java" afterDir="false" />
+    <list default="true" id="5ed8cc27-f7eb-4dcc-8a59-3da12a8f8e41" name="Changes" comment="add new author and book">
+      <change afterPath="$PROJECT_DIR$/src/librarysystem/BookList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/librarysystem/CheckoutRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/librarysystem/MemberCheckoutRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/librarysystem/MemberList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/librarysystem/AddBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/AddBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/librarysystem/LibrarySystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/LibrarySystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/AddMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/AddMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/CheckOutBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/CheckOutBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/EditMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/EditMember.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/librarysystem/adminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/adminWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +58,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Merging master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -99,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696950609309</updated>
       <workItem from="1696950610682" duration="1052000" />
-      <workItem from="1697062218317" duration="12665000" />
+      <workItem from="1697062218317" duration="13701000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -197,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697143704083</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add new author and book">
+      <option name="closed" value="true" />
+      <created>1697219893680</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1697219893680</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +298,8 @@
     <MESSAGE value="add member functionality and add book" />
     <MESSAGE value="route window done" />
     <MESSAGE value="add member is done" />
-    <option name="LAST_COMMIT_MESSAGE" value="add member is done" />
+    <MESSAGE value="add new author and book" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new author and book" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

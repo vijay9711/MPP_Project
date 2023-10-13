@@ -2,21 +2,44 @@ package librarysystem;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Vector;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class EditMember {
+import business.Address;
+import business.LibraryMember;
+import dataaccess.DataAccessFacade;
+import librarysystem.AddMember.BackToMainListener;
+
+public class EditMember extends JFrame implements LibWindow {
 
 	
 	public static final EditMember INSTANCE = new EditMember();
+	private DataAccessFacade db;
+	private JTextField am_memberID;
+	private JTextField am_firstName;
+	private JTextField am_lastName;
+	private JTextField am_street;
+	private JTextField am_city;
+	private JTextField am_state;
+	private JTextField am_zip;
+	private JTextField am_phoneNumber;
+	
 	private JFrame frame;
 
 	/**
@@ -73,7 +96,11 @@ public class EditMember {
 		lblNewLabel_18.setBounds(85, 42, 109, 23);
 		mainWindowContentPanel1.add(lblNewLabel_18);
 				
-		JComboBox comboBox1 = new JComboBox();
+		
+		
+		// populating Combobox Member list
+		
+		JComboBox comboBox1 = new JComboBox(generateComboBoxModel()); // Generating combo box items from generated model
 		comboBox1.setBounds(188, 43, 267, 22);
 		mainWindowContentPanel1.add(comboBox1);
 				
@@ -81,6 +108,21 @@ public class EditMember {
 		btnModifyMemberInitial.addMouseListener(new MouseAdapter() {   				//@Add event to Modify selected member record
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String item = comboBox1.getSelectedItem().toString();
+				String temp = item.substring(1,5);									// Need to change if Library member reaches 9999
+				LibraryMember selectedMember = returnMember(temp);
+				if (selectedMember!=null) {
+					am_memberID.setText(selectedMember.getMemberId());
+					am_firstName.setText(selectedMember.getFirstName());
+					am_lastName.setText(selectedMember.getLastName());
+					am_street.setText(selectedMember.getAddress().getStreet());
+					am_city.setText(selectedMember.getAddress().getCity());
+					am_state.setText(selectedMember.getAddress().getState());
+					am_zip.setText(selectedMember.getAddress().getZip());
+					am_phoneNumber.setText(selectedMember.getTelephone());
+				}
+				
+				//System.out.println(temp);
 			}
 		});
 		btnModifyMemberInitial.setBounds(465, 43, 97, 23);
@@ -171,7 +213,8 @@ public class EditMember {
 		JButton btnAddMemberFinal = new JButton("Edit This Member");
 		btnAddMemberFinal.addMouseListener(new MouseAdapter() {							//@dip06ece: Add Member function here
 			@Override
-			public void mouseClicked(MouseEvent e) {									//@vijay: ###
+			public void mouseClicked(MouseEvent e) {
+				modifyMemberEntry();//@vijay: ###
 			}
 		});
 		btnAddMemberFinal.setBounds(430, 327, 135, 23);
@@ -187,7 +230,34 @@ public class EditMember {
 		});
 		backButton.setBounds(85, 327, 135, 23);
 		mainWindowContentPanel1.add(backButton);
+		
+		// back button to move back to main menu
 
 	}
+	class BackToMainListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			LibrarySystem.hideAllWindows();
+			toggleAddMemeberFrame(false);
+			adminWindow.INSTANCE.toggleAdminFrame(true);
+    		pack();
+		}
+	}
+	
+	public void toggleAddMemeberFrame(boolean val) {
+		AddMember.INSTANCE.setVisible(val);
+		frame.setVisible(val);
+	}
 
+	@Override
+	public boolean isInitialized() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void isInitialized(boolean val) {
+		// TODO Auto-generated method stub
+		
+	}
 }

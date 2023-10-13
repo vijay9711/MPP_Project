@@ -152,35 +152,42 @@ public class AddMember extends JFrame implements LibWindow {
 		am_firstName = new JTextField();
 		am_firstName.setBounds(85, 118, 182, 20);
 		mainWindowContentPanel1.add(am_firstName);
+		am_firstName.setName("First Name");
 		am_firstName.setColumns(10);
 		
 		am_lastName = new JTextField();
 		am_lastName.setBounds(85, 177, 182, 20);
+		am_lastName.setName("Last Name");
 		mainWindowContentPanel1.add(am_lastName);
 		am_lastName.setColumns(10);
 		
 		am_street = new JTextField();
 		am_street.setBounds(85, 240, 182, 20);
+		am_street.setName("Street Name");
 		mainWindowContentPanel1.add(am_street);
 		am_street.setColumns(10);
 		
 		am_city = new JTextField();
 		am_city.setBounds(383, 60, 182, 20);
+		am_city.setName("City Name");
 		mainWindowContentPanel1.add(am_city);
 		am_city.setColumns(10);
 		
 		am_state = new JTextField();
 		am_state.setBounds(383, 118, 182, 20);
+		am_state.setName("State Name");
 		mainWindowContentPanel1.add(am_state);
 		am_state.setColumns(10);
 		
 		am_zip = new JTextField();
 		am_zip.setBounds(383, 177, 182, 20);
+		am_zip.setName("Zip Code");
 		mainWindowContentPanel1.add(am_zip);
 		am_zip.setColumns(10);
 		
 		am_phoneNumber = new JTextField();
 		am_phoneNumber.setBounds(383, 240, 182, 20);
+		am_phoneNumber.setName("Phone Number");
 		mainWindowContentPanel1.add(am_phoneNumber);
 		am_phoneNumber.setColumns(10);
 		
