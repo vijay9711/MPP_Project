@@ -28,9 +28,9 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class CheckoutRecord extends JFrame implements LibWindow{
+public class CheckoutRecordWindow extends JFrame implements LibWindow{
 
-	public static final CheckoutRecord INSTANCE = new CheckoutRecord();
+	public static final CheckoutRecordWindow INSTANCE = new CheckoutRecordWindow();
 	private DataAccessFacade db;
 	private JFrame frame;
 	private JTable table;
@@ -81,7 +81,7 @@ public class CheckoutRecord extends JFrame implements LibWindow{
 	/**
 	 * Create the application.
 	 */
-	public CheckoutRecord() {
+	public CheckoutRecordWindow() {
 		initialize();
 	}
 
