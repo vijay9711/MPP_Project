@@ -241,6 +241,12 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowButtonePanel.add(btnBookList);
 		
 		btnCheckoutBook = new JButton("Checkout Book");
+		btnCheckoutBook.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sidePanelMemberCheckoutBook();
+			}
+		});
 		btnCheckoutBook.setBounds(10, 245, 214, 23);
 		mainWindowButtonePanel.add(btnCheckoutBook);
 		
@@ -256,6 +262,12 @@ public class adminWindow extends JFrame implements LibWindow {
 		
 		btnOverdueBooks = new JButton("Overdue BookList");
 		btnOverdueBooks.setBounds(10, 306, 214, 23);
+		btnOverdueBooks.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				overDuePage();
+			}
+		});
 		mainWindowButtonePanel.add(btnOverdueBooks);
 		
 		
@@ -324,6 +336,24 @@ public class adminWindow extends JFrame implements LibWindow {
 //		MemberCheckoutRecord.INSTANCE.setData();
 		Util.centerFrameOnDesktop(MemberCheckoutRecord.INSTANCE);
 		CheckOutBook.INSTANCE.setVisible(true);
+		pack();
+	}
+	private void sidePanelMemberCheckoutBook() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		CheckOutBook.INSTANCE.init();
+//		MemberCheckoutRecord.INSTANCE.setData();
+		Util.centerFrameOnDesktop(MemberCheckoutRecord.INSTANCE);
+		CheckOutBook.INSTANCE.setVisible(true);
+		pack();
+	}
+	private void overDuePage() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		OverdueBookList.INSTANCE.init();
+//		MemberCheckoutRecord.INSTANCE.setData();
+		Util.centerFrameOnDesktop(MemberCheckoutRecord.INSTANCE);
+		OverdueBookList.INSTANCE.setVisible(true);
 		pack();
 	}
 	public void toggleAdminFrame(boolean val) {

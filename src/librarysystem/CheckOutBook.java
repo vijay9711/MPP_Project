@@ -39,18 +39,18 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CheckOutBook window = new CheckOutBook();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					CheckOutBook window = new CheckOutBook();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -145,7 +145,10 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 			if(b.isAvailable()) {
 				LocalDateTime checkoutDate = LocalDateTime.now(); 
 				LocalDateTime dueDate = checkoutDate;
+				
 				dueDate = dueDate.plusDays(b.getMaxCheckoutLength());
+//				checkoutDate = checkoutDate.minusDays(7);
+//				dueDate = dueDate.minusDays(1);
 				BookCopy bookC = b.getNextAvailableCopy();
 				bookC.setIsAvailable();
 				checkoutRecord record = new checkoutRecord(bookC, member, dueDate, checkoutDate);
@@ -171,7 +174,16 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CheckOutBook window = new CheckOutBook();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	
 	@Override

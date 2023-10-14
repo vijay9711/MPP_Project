@@ -65,18 +65,18 @@ public class CheckoutRecord extends JFrame implements LibWindow{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CheckoutRecord window = new CheckoutRecord();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					CheckoutRecord window = new CheckoutRecord();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -162,7 +162,16 @@ public class CheckoutRecord extends JFrame implements LibWindow{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CheckoutRecord window = new CheckoutRecord();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@Override

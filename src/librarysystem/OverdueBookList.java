@@ -10,7 +10,9 @@ import javax.swing.table.DefaultTableModel;
 
 import business.Author;
 import business.Book;
+import business.BookCopy;
 import business.LibraryMember;
+import business.checkoutRecord;
 import dataaccess.DataAccessFacade;
 import librarysystem.AddMember.BackToMainListener;
 
@@ -28,6 +30,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class OverdueBookList extends JFrame implements LibWindow{
 
@@ -35,7 +39,8 @@ public class OverdueBookList extends JFrame implements LibWindow{
 	private DataAccessFacade db;
 	private JFrame frame;
 	private JTable table;
-	
+	private JLabel lblNewLabel;
+	private JComboBox bookList;
 	public void connectDB() {
 		db = new DataAccessFacade();
 	}
@@ -57,11 +62,11 @@ public class OverdueBookList extends JFrame implements LibWindow{
 	public void booWiseCheckOutRecord(String ISBN) {
 		
 		connectDB();
-
+		System.out.println("ISBN: " + ISBN);
 		DefaultTableModel model = new DefaultTableModel();
 		table = new JTable(model);
-		table.setBounds(10, 84, 725, 353);
-
+		table.setBounds(10, 84, 800, 353);
+		
 		// Create a couple of columns 
 		model.addColumn("ISBN"); 
 		model.addColumn("Book Title"); 
@@ -72,45 +77,52 @@ public class OverdueBookList extends JFrame implements LibWindow{
 		
 		// Append a row 
 		model.addRow(new Object[]{"ISBN", "Book Title","Copy No.", "Member Name", "Issue Date","Due Date"});
-		table.getColumnModel().getColumn(0).setPreferredWidth(50);
-		table.getColumnModel().getColumn(1).setPreferredWidth(180);
-		table.getColumnModel().getColumn(2).setPreferredWidth(35);
-		table.getColumnModel().getColumn(3).setPreferredWidth(80);
-		table.getColumnModel().getColumn(4).setPreferredWidth(50);
-		table.getColumnModel().getColumn(5).setPreferredWidth(50);
-		//*********************************************************************//
-		//Book bookToCopy = db.getBook(ISBN);// Connect to Database
-
-
-//		HashMap<String, Book> bookList = db.readBooksMap();
-//		for(Entry<String, Book> item :bookList.entrySet()) {	
-//			List<Author> authorList = (item.getValue()).getAuthors();
-//			String thisAuthor ="";
-//			for (Author e:authorList) {t
-//				thisAuthor = thisAuthor +e.getFirstName()+" "+e.getLastName()+"; ";
-//			}
-//			model.addRow(new Object[]{item.getValue().getIsbn(), item.getValue().getTitle(),thisAuthor,(item.getValue().getCopyNums()).size()});
-//		}
-		//*********************************************************************//
-		frame.getContentPane().add(table);
+		table.getColumnModel().getColumn(0).setMinWidth(50);
+		table.getColumnModel().getColumn(1).setMinWidth(180);
+		table.getColumnModel().getColumn(2).setMinWidth(35);
+		table.getColumnModel().getColumn(3).setMinWidth(80);
+		table.getColumnModel().getColumn(4).setMinWidth(120);
+		table.getColumnModel().getColumn(5).setMinWidth(120);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
+		HashMap<String, LibraryMember> lib = db.readMemberMap();
+		for(Entry<String, LibraryMember> lb : lib.entrySet()) {
+			LibraryMember mem = lb.getValue();
+			checkoutRecord[] cr = mem.getCheckoutRecord();
+			if(cr != null && cr.length > 0) {
+				for(int i=0; i<cr.length; i++) {
+					BookCopy checkoutBookCopy = cr[i].getBookCopy();
+					Book checkoutBook = checkoutBookCopy.getBook();
+					LocalDateTime today = LocalDateTime.now();
+					boolean isOverDue = today.isAfter(cr[i].getDueDate());
+					if(checkoutBook.getIsbn().equals(ISBN) && isOverDue) {
+						model.addRow(new Object[]{ISBN, checkoutBook.getTitle(),checkoutBook.getNumCopies(),mem.getFirstName(),cr[i].getCheckoutDate(),cr[i].getDueDate()});
+					}
+				}
+			}
+			
+		}
+		
+		frame.getContentPane().add(table);
+		frame.revalidate();
+		frame.repaint();
 	}
 	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OverdueBookList window = new OverdueBookList();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					OverdueBookList window = new OverdueBookList();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -129,7 +141,7 @@ public class OverdueBookList extends JFrame implements LibWindow{
 		frame.getContentPane().setLayout(null);
 		
 		// populating Combobox Member list
-		JComboBox bookList = new JComboBox(generateComboBoxModel()); // Generating combo box items from generated model
+		bookList = new JComboBox(generateComboBoxModel()); // Generating combo box items from generated model
 		bookList.setBounds(10, 50, 541, 23);
 		frame.getContentPane().add(bookList);
 		// Populating Book 
@@ -151,7 +163,7 @@ public class OverdueBookList extends JFrame implements LibWindow{
 
 		// Button
 		
-		JLabel lblNewLabel = new JLabel("Overdue Book List");
+		lblNewLabel = new JLabel("Overdue Book List");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(265, 11, 182, 14);
@@ -180,6 +192,11 @@ public class OverdueBookList extends JFrame implements LibWindow{
 		}
 	}
 	
+	public void getOverDueData() {
+//		lblNewLabel
+		Object b = bookList.getSelectedItem();
+		System.out.println("book "+b.toString());
+	}
 	public void toggleAddMemeberFrame(boolean val) {
 		AddMember.INSTANCE.setVisible(val);
 		frame.setVisible(val);
@@ -187,8 +204,16 @@ public class OverdueBookList extends JFrame implements LibWindow{
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					OverdueBookList window = new OverdueBookList();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	@Override
