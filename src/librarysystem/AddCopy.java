@@ -57,6 +57,7 @@ public class AddCopy extends JFrame implements LibWindow {
 		for(int i=0; i<copyCount;i++) {
 			bookToCopy.addCopy();
 		}
+		db.addNewBook(bookToCopy);
 		StringBuilder st = new StringBuilder();
 		st.append(copyCount +" copy books"
 				+"\nTitle: "+ bookToCopy.getTitle() 
