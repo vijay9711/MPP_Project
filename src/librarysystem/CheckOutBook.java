@@ -167,13 +167,12 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 		
 	}
 	public void toggleAddMemeberFrame(boolean val) {
-		AddMember.INSTANCE.setVisible(val);
+		CheckOutBook.INSTANCE.setVisible(val);
 		frame.setVisible(val);
 	}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

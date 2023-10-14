@@ -4,23 +4,18 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import business.Author;
 import business.Book;
 import business.BookCopy;
 import business.LibraryMember;
 import business.checkoutRecord;
 import dataaccess.DataAccessFacade;
-import librarysystem.AddMember.BackToMainListener;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Vector;
 import java.util.Map.Entry;
 
@@ -177,10 +172,10 @@ public class OverdueBookList extends JFrame implements LibWindow{
 		
 		
 		// back button to move back to main menu
-		JButton backButton = new JButton("Back to Main");
-		backButton.addActionListener(new BackToMainListener());
-		backButton.setBounds(10, 439, 135, 22);
-		frame.getContentPane().add(backButton);
+				JButton backButton = new JButton("Back to Main");
+				backButton.addActionListener(new BackToMainListener());
+				backButton.setBounds(10, 438, 135, 23);
+				frame.getContentPane().add(backButton);
 	}
 	class BackToMainListener implements ActionListener {
 		@Override
@@ -192,13 +187,8 @@ public class OverdueBookList extends JFrame implements LibWindow{
 		}
 	}
 	
-	public void getOverDueData() {
-//		lblNewLabel
-		Object b = bookList.getSelectedItem();
-		System.out.println("book "+b.toString());
-	}
 	public void toggleAddMemeberFrame(boolean val) {
-		AddMember.INSTANCE.setVisible(val);
+		OverdueBookList.INSTANCE.setVisible(val);
 		frame.setVisible(val);
 	}
 
