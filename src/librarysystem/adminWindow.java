@@ -320,10 +320,10 @@ public class adminWindow extends JFrame implements LibWindow {
 	private void sidePanelMemberCheckoutRecordList() {
 		LibrarySystem.hideAllWindows();
 		toggleAdminFrame(false);
-		MemberCheckoutRecord.INSTANCE.init();
+		CheckOutBook.INSTANCE.init();
 //		MemberCheckoutRecord.INSTANCE.setData();
 		Util.centerFrameOnDesktop(MemberCheckoutRecord.INSTANCE);
-		MemberCheckoutRecord.INSTANCE.setVisible(true);
+		CheckOutBook.INSTANCE.setVisible(true);
 		pack();
 	}
 	public void toggleAdminFrame(boolean val) {
