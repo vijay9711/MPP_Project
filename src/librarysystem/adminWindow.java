@@ -197,6 +197,7 @@ public class adminWindow extends JFrame implements LibWindow {
 
 		btnRemoveMember = new JButton("Remove Member");
 		btnRemoveMember.setBounds(10, 94, 214, 23);
+		btnRemoveMember.setVisible(false);
 		mainWindowButtonePanel.add(btnRemoveMember);
 
 		btnMemberList = new JButton("Member List");
