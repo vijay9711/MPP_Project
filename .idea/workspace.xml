@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ed8cc27-f7eb-4dcc-8a59-3da12a8f8e41" name="Changes" comment="checkout status added" />
+    <list default="true" id="5ed8cc27-f7eb-4dcc-8a59-3da12a8f8e41" name="Changes" comment="login role added">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/business/LibraryMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/business/LibraryMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataaccess/DataAccessFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataaccess/DataAccessFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/librarysystem/CheckOutBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/librarysystem/CheckOutBook.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +92,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696950609309</updated>
       <workItem from="1696950610682" duration="1052000" />
-      <workItem from="1697062218317" duration="14544000" />
+      <workItem from="1697062218317" duration="15809000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -225,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697228762298</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="login role added">
+      <option name="closed" value="true" />
+      <created>1697229929796</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1697229929796</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +322,8 @@
     <MESSAGE value="add member is done" />
     <MESSAGE value="add new author and book" />
     <MESSAGE value="checkout status added" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkout status added" />
+    <MESSAGE value="login role added" />
+    <option name="LAST_COMMIT_MESSAGE" value="login role added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

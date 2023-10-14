@@ -34,7 +34,7 @@ final public class Book implements Serializable {
 			BookCopy c = copies[i];
 			if(c.equals(copy)) {
 				copies[i] = copy;
-				
+				System.out.println("update "+copy.getCopyNum());
 			}
 		}
 	}
@@ -42,7 +42,9 @@ final public class Book implements Serializable {
 	public List<Integer> getCopyNums() {
 		List<Integer> retVal = new ArrayList<>();
 		for(BookCopy c : copies) {
-			retVal.add(c.getCopyNum());
+			if(c.isAvailable()) {
+				retVal.add(c.getCopyNum());
+			}
 		}
 		return retVal;
 		
@@ -101,7 +103,16 @@ final public class Book implements Serializable {
 		Optional<BookCopy> optional 
 			= Arrays.stream(copies)
 			        .filter(x -> x.isAvailable()).findFirst();
+//		BookCopy bc;
+//		for(int i = 0; i < copies.length; i++) {
+//			System.out.println(copies[i].isAvailable() + " num " + copies[i].getCopyNum());
+//			if(copies[i].isAvailable()) {
+//				bc = copies[i];
+//				return bc;
+//			}
+//		}
 		return optional.isPresent() ? optional.get() : null;
+//		return null;
 	}
 	
 	public BookCopy getCopy(int copyNum) {

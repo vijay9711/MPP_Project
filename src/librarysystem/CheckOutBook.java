@@ -10,10 +10,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.Book;
+import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.swing.SwingConstants;
 
+import business.BookCopy;
 import business.LibraryMember;
+import business.checkoutRecord;
 import dataaccess.DataAccessFacade;
 import librarysystem.AddMember.BackToMainListener;
 
@@ -27,6 +31,7 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 	private JTextField checkoutISBN;
 	private JTextField checkoutMemberID;
 	private JTable table;
+	private JLabel bookCopy;
 	private boolean isInitialized = false;
 
 	private DataAccessFacade db;
@@ -96,6 +101,11 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 		lblCheckOutMsg.setBounds(54, 98, 410, 23);
 		frame.getContentPane().add(lblCheckOutMsg);
 		
+		bookCopy = new JLabel("Checkout a Book");
+		bookCopy.setHorizontalAlignment(SwingConstants.CENTER);
+		bookCopy.setFont(new Font("Tahoma", Font.BOLD, 14));
+		bookCopy.setBounds(84, 98, 410, 23);
+		frame.getContentPane().add(lblNewLabel);
 		// back button to move back to main menu
 		JButton backButton = new JButton("Back to Main");
 		backButton.addActionListener(new BackToMainListener());
@@ -126,11 +136,29 @@ public class CheckOutBook  extends JFrame implements LibWindow{
 				sb.append("The Book ISBN id("+checkoutISBN.getText()+") is not found in DataBase." +"\n");
 			}
 			if(member == null) {
-				sb.append("The Member id("+checkoutISBN.getText()+") is not found in DataBase." +"\n");
+				sb.append("The Member id("+checkoutMemberID.getText()+") is not found in DataBase." +"\n");
 			}
 			if(b == null | member == null) {
 				sb.append("Please try again!");
 				JOptionPane.showMessageDialog(CheckOutBook.INSTANCE,sb.toString());
+			}
+			if(b.isAvailable()) {
+				LocalDateTime checkoutDate = LocalDateTime.now(); 
+				LocalDateTime dueDate = checkoutDate;
+				dueDate = dueDate.plusDays(b.getMaxCheckoutLength());
+				BookCopy bookC = b.getNextAvailableCopy();
+				bookC.setIsAvailable();
+				checkoutRecord record = new checkoutRecord(bookC, member, dueDate, checkoutDate);
+				b.updateCopies(bookC);
+				member.setCheckoutRecord(record);
+				db.saveNewMember(member);
+				db.addNewBook(b);
+				StringBuilder sb1 = new StringBuilder();
+				sb1.append("Book checkout successfully!\n");
+				sb1.append("Available copy:" + b.getCopyNums().toString());
+				JOptionPane.showMessageDialog(CheckOutBook.INSTANCE,sb1.toString());
+			}else {
+				JOptionPane.showMessageDialog(CheckOutBook.INSTANCE,"No copy available for this book.");
 			}
 		}
 		

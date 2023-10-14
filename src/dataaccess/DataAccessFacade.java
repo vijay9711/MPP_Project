@@ -60,7 +60,8 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String,Book> booksList = readBooksMap();
 		for(Entry<String, Book> item : booksList.entrySet()) {
 			Book b = item.getValue();
-			if(b.getIsbn() == id) {
+			if(id.equals(b.getIsbn())) {
+				System.out.println("Db data " + b.getCopyNums().toString());
 				return b;
 			}
 		}
@@ -73,7 +74,7 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String,LibraryMember> booksList = readMemberMap();
 		for(Entry<String, LibraryMember> item : booksList.entrySet()) {
 			LibraryMember b = item.getValue();
-			if(b.getMemberId() == id) {
+			if(id.equals(b.getMemberId())) {
 				return b;
 			}
 		}
