@@ -221,6 +221,12 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowButtonePanel.add(btnAddBook);
 
 		btnAddCopy = new JButton("Add Copy");
+		btnAddCopy.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sidePanelAddCopy();
+			}
+		});
 		btnAddCopy.setBounds(10, 184, 214, 23);
 		mainWindowButtonePanel.add(btnAddCopy);
 
@@ -301,6 +307,16 @@ public class adminWindow extends JFrame implements LibWindow {
 		BookList.INSTANCE.setVisible(true);
 		pack();
 	}
+	private void sidePanelAddCopy() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		AddCopy.INSTANCE.init();
+//		AddCopy.INSTANCE.setData();
+		Util.centerFrameOnDesktop(AddCopy.INSTANCE);
+		AddCopy.INSTANCE.setVisible(true);
+		pack();
+	}
+	
 	private void sidePanelMemberCheckoutRecordList() {
 		LibrarySystem.hideAllWindows();
 		toggleAdminFrame(false);

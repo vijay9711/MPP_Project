@@ -265,11 +265,7 @@ public class EditMember extends JFrame implements LibWindow {
 		
 		// back button to move back to main menu
 		JButton backButton = new JButton("Back to Main");
-		backButton.addMouseListener(new MouseAdapter() {							//@dip06ece: Add Member function here
-			@Override
-			public void mouseClicked(MouseEvent e) {									//@vijay: ###
-			}
-		});
+		backButton.addActionListener(new BackToMainListener());
 		backButton.setBounds(85, 327, 135, 23);
 		mainWindowContentPanel1.add(backButton);
 		
