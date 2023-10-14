@@ -4,21 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
-import business.Author;
 import business.Book;
-import business.LibraryMember;
 import dataaccess.DataAccessFacade;
-import librarysystem.AddMember.BackToMainListener;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Vector;
 import java.util.Map.Entry;
 
@@ -165,10 +159,10 @@ public class OverdueBookList extends JFrame implements LibWindow{
 		
 		
 		// back button to move back to main menu
-		JButton backButton = new JButton("Back to Main");
-		backButton.addActionListener(new BackToMainListener());
-		backButton.setBounds(10, 439, 135, 22);
-		frame.getContentPane().add(backButton);
+				JButton backButton = new JButton("Back to Main");
+				backButton.addActionListener(new BackToMainListener());
+				backButton.setBounds(10, 438, 135, 23);
+				frame.getContentPane().add(backButton);
 	}
 	class BackToMainListener implements ActionListener {
 		@Override
@@ -181,15 +175,15 @@ public class OverdueBookList extends JFrame implements LibWindow{
 	}
 	
 	public void toggleAddMemeberFrame(boolean val) {
-		AddMember.INSTANCE.setVisible(val);
+		OverdueBookList.INSTANCE.setVisible(val);
 		frame.setVisible(val);
 	}
 
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
+
+
 
 	@Override
 	public boolean isInitialized() {
@@ -197,10 +191,26 @@ public class OverdueBookList extends JFrame implements LibWindow{
 		return false;
 	}
 
+
+
 	@Override
 	public void isInitialized(boolean val) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void init() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					OverdueBookList window = new OverdueBookList();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }

@@ -241,6 +241,12 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowButtonePanel.add(btnBookList);
 		
 		btnCheckoutBook = new JButton("Checkout Book");
+		btnCheckoutBook.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sidePanelCheckOutBook();
+			}
+		});
 		btnCheckoutBook.setBounds(10, 245, 214, 23);
 		mainWindowButtonePanel.add(btnCheckoutBook);
 		
@@ -255,6 +261,12 @@ public class adminWindow extends JFrame implements LibWindow {
 		mainWindowButtonePanel.add(btnCheckoutRecord);
 		
 		btnOverdueBooks = new JButton("Overdue BookList");
+		btnOverdueBooks.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sidePanelOverDueBookList();
+			}
+		});
 		btnOverdueBooks.setBounds(10, 306, 214, 23);
 		mainWindowButtonePanel.add(btnOverdueBooks);
 		
@@ -316,14 +328,32 @@ public class adminWindow extends JFrame implements LibWindow {
 		AddCopy.INSTANCE.setVisible(true);
 		pack();
 	}
-	
-	private void sidePanelMemberCheckoutRecordList() {
+	private void sidePanelCheckOutBook() {
 		LibrarySystem.hideAllWindows();
 		toggleAdminFrame(false);
 		CheckOutBook.INSTANCE.init();
+//		sidePanelCheckOutBook.INSTANCE.setData();
+		Util.centerFrameOnDesktop(CheckOutBook.INSTANCE);
+		CheckOutBook.INSTANCE.setVisible(true);
+		pack();
+	}
+	private void sidePanelMemberCheckoutRecordList() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		MemberCheckoutRecord.INSTANCE.init();
 //		MemberCheckoutRecord.INSTANCE.setData();
 		Util.centerFrameOnDesktop(MemberCheckoutRecord.INSTANCE);
-		CheckOutBook.INSTANCE.setVisible(true);
+		MemberCheckoutRecord.INSTANCE.setVisible(true);
+		pack();
+	}
+	
+	private void sidePanelOverDueBookList() {
+		LibrarySystem.hideAllWindows();
+		toggleAdminFrame(false);
+		OverdueBookList.INSTANCE.init();
+//		MemberCheckoutRecord.INSTANCE.setData();
+		Util.centerFrameOnDesktop(OverdueBookList.INSTANCE);
+		OverdueBookList.INSTANCE.setVisible(true);
 		pack();
 	}
 	public void toggleAdminFrame(boolean val) {
