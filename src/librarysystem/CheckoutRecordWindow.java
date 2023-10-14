@@ -165,7 +165,7 @@ public class CheckoutRecordWindow extends JFrame implements LibWindow{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CheckoutRecord window = new CheckoutRecord();
+					CheckoutRecordWindow window = new CheckoutRecordWindow();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

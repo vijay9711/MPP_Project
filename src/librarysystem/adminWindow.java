@@ -152,7 +152,7 @@ public class adminWindow extends JFrame implements LibWindow {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		mainWindowTextePanel.add(lblNewLabel);
 
-		lblNewLabel_1 = new JLabel(person);
+		lblNewLabel_1 = new JLabel(person); 
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(8, 31, 217, 15);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 12));
@@ -332,10 +332,10 @@ public class adminWindow extends JFrame implements LibWindow {
 	private void sidePanelMemberCheckoutRecordList() {
 		LibrarySystem.hideAllWindows();
 		toggleAdminFrame(false);
-		CheckOutBook.INSTANCE.init();
+		MemberCheckoutRecord.INSTANCE.init();
 //		MemberCheckoutRecord.INSTANCE.setData();
 		Util.centerFrameOnDesktop(MemberCheckoutRecord.INSTANCE);
-		CheckOutBook.INSTANCE.setVisible(true);
+		MemberCheckoutRecord.INSTANCE.setVisible(true);
 		pack();
 	}
 	private void sidePanelMemberCheckoutBook() {
