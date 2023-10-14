@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import business.Author;
+import business.checkoutRecord;
 import business.Book;
 import business.LibraryMember;
 import dataaccess.DataAccessFacade;
@@ -31,6 +32,7 @@ public class MemberCheckoutRecord extends JFrame implements LibWindow {
 	public static final MemberCheckoutRecord INSTANCE = new MemberCheckoutRecord();
 	private JFrame frame;
 	private JTable table;
+	private JButton btnModifyMemberInitial;
 	private DataAccessFacade db;
 	private DefaultTableModel model;
 
@@ -50,17 +52,49 @@ public class MemberCheckoutRecord extends JFrame implements LibWindow {
 		DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
 		return model;
 	}
-	public LibraryMember returnMember(String temp) {										// Returns selected Library Member
+	public void generateCheckoutRecord(String temp) {										// Returns selected Library Member
+		
 		connectDB();
-		HashMap<String, LibraryMember> membermap = db.readMemberMap();
-		for(Entry<String, LibraryMember> item:membermap.entrySet()) {			
+		btnModifyMemberInitial.setVisible(false);
+		model = new DefaultTableModel();
+		table = new JTable(model);
+		
+		table.setBounds(10, 66, 604, 279);
+
+		// Create a couple of columns 
+		model.addColumn("ISBN"); 
+		model.addColumn("Book Title"); 
+		model.addColumn("Copy No."); 
+		model.addColumn("MemberName"); 
+		model.addColumn("Issued on "); 
+		model.addColumn("Due Date"); 
+		// Append a row 
+		model.addRow(new Object[]{"ISBN", "Book Title","Copy No.", "Member Name", "Issue Date","Due Date"});
+		
+		HashMap<String, LibraryMember> checkOutRecord = db.readMemberMap();
+		for(Entry<String, LibraryMember> item:checkOutRecord.entrySet()) {			
 			if ((item.getValue().getMemberId()).equals(temp)) {
-				//String memberDetails[] = {item.getValue().getMemberId(), item.getValue().getFirstName()};
-				return new LibraryMember(item.getValue().getMemberId(),item.getValue().getFirstName(),item.getValue().getLastName(),item.getValue().getTelephone(),item.getValue().getAddress());
+				if(item.getValue().getCheckoutRecord()!=null) {
+					checkoutRecord[] List = item.getValue().getCheckoutRecord();
+					for (checkoutRecord e:List) {
+						model.addRow(new Object[]{e.getBookCopy().getBook().getIsbn(), e.getBookCopy().getBook().getTitle(),
+								e.getBookCopy().getBook().getNumCopies(), e.getMember().getFirstName()+" "+e.getMember().getLastName(),
+								e.getCheckoutDate().getMonthValue()+"/"+e.getCheckoutDate().getDayOfMonth()+"/"+e.getCheckoutDate().getYear(),
+								+e.getDueDate().getMonthValue()+"/"+e.getDueDate().getDayOfMonth()+"/"+e.getDueDate().getYear()});
+					}
+				
+				}
 			}
 			
 		}
-		return null; // This will not be executed
+		table.getColumnModel().getColumn(0).setPreferredWidth(50);
+		table.getColumnModel().getColumn(1).setPreferredWidth(180);
+		table.getColumnModel().getColumn(2).setPreferredWidth(35);
+		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		table.getColumnModel().getColumn(4).setPreferredWidth(50);
+		table.getColumnModel().getColumn(5).setPreferredWidth(50);
+		pack();
+		frame.getContentPane().add(table);
 		
 	}
 
@@ -114,18 +148,14 @@ public class MemberCheckoutRecord extends JFrame implements LibWindow {
 				frame.getContentPane().add(comboBox1);
 				// Populating member list 
 				
-				JButton btnModifyMemberInitial = new JButton("Modify");
+				btnModifyMemberInitial = new JButton("Query");
 				btnModifyMemberInitial.addMouseListener(new MouseAdapter() {   				//@Add event to Modify selected member record
 					@Override																
 					public void mouseClicked(MouseEvent e) {
 						String item = comboBox1.getSelectedItem().toString();
 						String temp = item.substring(1,5);									// Need to change if Library member reaches 9999
-						LibraryMember selectedMember = returnMember(temp);
-						if (selectedMember!=null) {
-							
-						}
-						
-						//System.out.println(temp);
+						generateCheckoutRecord(temp);
+						//**************************************************//
 					}
 				});
 				btnModifyMemberInitial.setBounds(465, 43, 97, 23);
@@ -178,5 +208,4 @@ public class MemberCheckoutRecord extends JFrame implements LibWindow {
 			}
 		});
 	}
-
 }
