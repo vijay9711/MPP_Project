@@ -72,21 +72,28 @@ public class MemberCheckoutRecord extends JFrame implements LibWindow {
 		model.addRow(new Object[]{"ISBN", "Book Title","Copy No.", "Member Name", "Issue Date","Due Date"});
 		
 		HashMap<String, LibraryMember> checkOutRecord = db.readMemberMap();
+//		StringBuilder st = new StringBuilder();
 		for(Entry<String, LibraryMember> item:checkOutRecord.entrySet()) {			
 			if ((item.getValue().getMemberId()).equals(temp)) {
 				if(item.getValue().getCheckoutRecord()!=null) {
 					checkoutRecord[] List = item.getValue().getCheckoutRecord();
+//					st.append("| ISBN | Book title | Copy no | Member name | Issue date | Due date |\n");		
+					System.out.printf("| %-10s | %-20s | %-10s | %-20s | %-30s | %-30s | %n", "ISBN" , "Book title", "Copy no", "Member name", "Issue date", "Due date");
 					for (checkoutRecord e:List) {
 						model.addRow(new Object[]{e.getBookCopy().getBook().getIsbn(), e.getBookCopy().getBook().getTitle(),
 								e.getBookCopy().getCopyNum(), e.getMember().getFirstName()+" "+e.getMember().getLastName(),
 								e.getCheckoutDate().getMonthValue()+"/"+e.getCheckoutDate().getDayOfMonth()+"/"+e.getCheckoutDate().getYear(),
 								+e.getDueDate().getMonthValue()+"/"+e.getDueDate().getDayOfMonth()+"/"+e.getDueDate().getYear()});
+//						st.append("| " +e.getBookCopy().getBook().getIsbn() +" | "+ e.getBookCopy().getBook().getTitle() + " | " +  e.getBookCopy().getCopyNum() + " | " + e.getMember().getFirstName() +  " | " + e.getCheckoutDate().toString() +  " | " + e.getDueDate().toString()+ "\n");
+						System.out.printf("| %-10s | %-20s | %-10d | %-20s | %-30s | %-30s | %n", e.getBookCopy().getBook().getIsbn().toString(),e.getBookCopy().getBook().getTitle(), e.getBookCopy().getCopyNum(), e.getMember().getFirstName(), e.getCheckoutDate().toString(), e.getDueDate().toString());
+						
 					}
 				
 				}
 			}
 			
 		}
+//		System.out.println(st.toString());
 		table.getColumnModel().getColumn(0).setPreferredWidth(50);
 		table.getColumnModel().getColumn(1).setPreferredWidth(180);
 		table.getColumnModel().getColumn(2).setPreferredWidth(35);
