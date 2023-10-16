@@ -59,18 +59,18 @@ public class AddBook extends JFrame implements LibWindow {
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					AddBook window = new AddBook();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AddBook window = new AddBook();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	private void initialize() {
 		frame = new JFrame();
@@ -261,7 +261,10 @@ public class AddBook extends JFrame implements LibWindow {
 				st.append(item.getName() + "\n");
 				
 			}
-			else if((item.getName() == "Book copy count" || item.getName() == "Book ISBN") && item.getText().trim() != "" && !item.getText().matches("^[0-9]$")) {
+			else if((item.getName() == "Book copy count") && item.getText().trim() != "" && !item.getText().matches("^[0-9]*$")) {
+				st.append(item.getName()+ " input allow only numbers. \n");
+			}
+			else if((item.getName() == "Book ISBN") && item.getText().trim() != "" && !item.getText().matches("^[0-9]*$")) {
 				st.append(item.getName()+ " input allow only numbers. \n");
 			}
 			
