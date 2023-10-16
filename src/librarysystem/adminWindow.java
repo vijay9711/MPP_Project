@@ -48,7 +48,7 @@ public class adminWindow extends JFrame implements LibWindow {
 	private JButton btnEditMember;
 	private JButton btnRemoveMember;
 	private JButton btnMemberList;
-	private JButton btnAddBook;
+	private JButton btnAddBook; 
 	private JButton btnAddCopy;
 	private JButton btnBookList;
 	private JButton btnCheckoutBook;
@@ -167,7 +167,11 @@ public class adminWindow extends JFrame implements LibWindow {
 		btnLogOutButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {						//@dip06ece: On Mouse click program exits
-				System.exit(0);
+				LibrarySystem.hideAllWindows();
+				toggleAdminFrame(false);
+				LoginWindow.INSTANCE.init();
+				Util.centerFrameOnDesktop(LoginWindow.INSTANCE);
+				LoginWindow.INSTANCE.setVisible(true);
 			}
 		});
 		btnLogOutButton.setBounds(10, 5, 214, 23);
