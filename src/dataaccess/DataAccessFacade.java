@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import business.Author;
 import business.Book;
 import business.BookCopy;
 import business.LibraryMember;
+import business.checkoutRecord;
 import dataaccess.DataAccessFacade.StorageType;
 
 
@@ -81,6 +83,7 @@ public class DataAccessFacade implements DataAccess {
 		return null;
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {
 		//Returns a Map with name/value pairs being
@@ -96,6 +99,21 @@ public class DataAccessFacade implements DataAccess {
 				StorageType.MEMBERS);
 	}
 	
+	public List<checkoutRecord> getAllCheckout() {
+		ArrayList<checkoutRecord> newArr = new ArrayList<checkoutRecord>();
+
+		HashMap<String,LibraryMember> booksList = readMemberMap();
+		for(Entry<String, LibraryMember> item : booksList.entrySet()) {
+			LibraryMember b = item.getValue();
+			if(b.getCheckoutRecord() != null && b.getCheckoutRecord().length > 0) {
+				checkoutRecord[] record = b.getCheckoutRecord();
+				for(int i = 0; i < record.length; i++) {
+					newArr.add(record[i]);
+				}
+			}
+		}
+		return newArr;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public HashMap<String, User> readUserMap() {

@@ -48,18 +48,18 @@ public class BookList extends JFrame implements LibWindow{
 			model.addRow(new Object[]{item.getValue().getIsbn(), item.getValue().getTitle(),thisAuthor,(item.getValue().getCopyNums()).size()});
 		}
 	}
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BookList window = new BookList();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					BookList window = new BookList();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.

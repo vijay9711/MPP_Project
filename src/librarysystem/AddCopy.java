@@ -61,25 +61,25 @@ public class AddCopy extends JFrame implements LibWindow {
 		st.append(copyCount +" copy books"
 				+"\nTitle: "+ bookToCopy.getTitle() 
 				+"\nISBN "+ ISBN+ " \nis now added to Library!");
-		
+		db.addNewBook(bookToCopy);
 		JOptionPane.showMessageDialog(this,st.toString());
 		//System.out.println(bookToCopy.getIsbn()+" "+bookToCopy.getNumCopies() );
 	}
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AddCopy window = new AddCopy();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					AddCopy window = new AddCopy();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.

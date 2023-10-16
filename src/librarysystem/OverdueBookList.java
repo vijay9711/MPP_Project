@@ -36,11 +36,23 @@ public class OverdueBookList extends JFrame implements LibWindow{
 	private JTable table;
 	private JLabel lblNewLabel;
 	private JComboBox bookList;
+	private JButton btnCheckoutQuery;
 	public void connectDB() {
 		db = new DataAccessFacade();
 	}
 	
-
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					OverdueBookList window = new OverdueBookList();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	public DefaultComboBoxModel generateComboBoxModel() {
 		connectDB();															// Connect to Database
@@ -57,7 +69,7 @@ public class OverdueBookList extends JFrame implements LibWindow{
 	public void booWiseCheckOutRecord(String ISBN) {
 		
 		connectDB();
-		System.out.println("ISBN: " + ISBN);
+		btnCheckoutQuery.setVisible(false);
 		DefaultTableModel model = new DefaultTableModel();
 		table = new JTable(model);
 		table.setBounds(10, 84, 800, 353);
@@ -140,7 +152,7 @@ public class OverdueBookList extends JFrame implements LibWindow{
 		bookList.setBounds(10, 50, 541, 23);
 		frame.getContentPane().add(bookList);
 		// Populating Book 
-		JButton btnCheckoutQuery = new JButton("Query");
+		btnCheckoutQuery = new JButton("Query");
 		btnCheckoutQuery.addMouseListener(new MouseAdapter() {   				//@Add event to Modify selected member record
 			@Override																
 			public void mouseClicked(MouseEvent e) {

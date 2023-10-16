@@ -13,10 +13,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import javax.swing.SwingConstants;
+import javax.swing.text.JTextComponent;
 
 import business.Address;
 import business.LibraryMember;
@@ -37,23 +40,48 @@ public class AddMember extends JFrame implements LibWindow {
 	JTextField am_state;
 	JTextField am_zip;
 	JTextField am_phoneNumber;
+	public List<JTextComponent> list; 
 	public void connectDB() {
 		db = new DataAccessFacade();
 	}
 	public void addMember() {
-		Address address = new Address(am_street.getText(), am_city.getText(), am_state.getText(), am_zip.getText());
-		LibraryMember lb = new LibraryMember(am_memberID.getText(), am_firstName.getText(), am_lastName.getText(), am_phoneNumber.getText(), address);
-		LibraryMember member = db.saveNewMember(lb);
-		StringBuilder st = new StringBuilder();
-		st.append("New Library Member is added successfully!");
-		st.append(member.getFirstName() +" member Id is: " + member.getMemberId());
-		JOptionPane.showMessageDialog(this,st.toString());
-		LibrarySystem.hideAllWindows();
-		toggleAddMemeberFrame(false);
-		adminWindow.INSTANCE.toggleAdminFrame(true);
-		pack();
+		if(validateAuthorForm()) {
+			Address address = new Address(am_street.getText(), am_city.getText(), am_state.getText(), am_zip.getText());
+			LibraryMember lb = new LibraryMember(am_memberID.getText(), am_firstName.getText(), am_lastName.getText(), am_phoneNumber.getText(), address);
+			LibraryMember member = db.saveNewMember(lb);
+			StringBuilder st = new StringBuilder();
+			st.append("New Library Member is added successfully!");
+			st.append(member.getFirstName() +" member Id is: " + member.getMemberId());
+			JOptionPane.showMessageDialog(this,st.toString());
+			LibrarySystem.hideAllWindows();
+			toggleAddMemeberFrame(false);
+			adminWindow.INSTANCE.toggleAdminFrame(true);
+			pack();
+		}
+		
 	}
 
+	public boolean validateAuthorForm() {
+		StringBuilder st = new StringBuilder();
+		list.forEach((item)->{
+			if(item.getText().trim().length() == 0) {
+				st.append(item.getName() + "\n");	
+			}
+			else if(item.getName() == "Zip Code" && item.getText().trim() != "" && !item.getText().matches("^[0-9]{5}$")) {
+				st.append("zip code should be in 5 digits without special character.\n");
+			}
+			else if(item.getName() == "Phone Number" && item.getText().trim() != "" && !item.getText().matches("^[0-9]{3}-[0-9]{3}-[0-9]{4}$")) {
+				st.append("Phone number is not valid. Please enter 10 digit phone number. \n eg(000-000-0000) \n");
+			}
+		});
+		if(st.toString() != "") {
+			st.append("\nPlease fill all field");
+			JOptionPane.showMessageDialog(this,st.toString());
+			return false;
+		}
+		return true;
+	}
+	
 	@Override
 	public void init() {
 		EventQueue.invokeLater(new Runnable() {
@@ -98,6 +126,7 @@ public class AddMember extends JFrame implements LibWindow {
 		id += 1;
 		return Integer.toString(id);
 	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -241,6 +270,7 @@ public class AddMember extends JFrame implements LibWindow {
 		backButton.addActionListener(new BackToMainListener());
 		backButton.setBounds(100, 311, 135, 23);
 		mainWindowContentPanel1.add(backButton);
+		list = Arrays.asList(am_firstName,am_lastName,am_street,am_city,am_state,am_zip,am_phoneNumber);
 	}
 	class BackToMainListener implements ActionListener {
 		@Override

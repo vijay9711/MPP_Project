@@ -44,18 +44,18 @@ public class MemberList  extends JFrame implements LibWindow {
 			model.addRow(new Object[]{item.getValue().getMemberId(), item.getValue().getFirstName()+" "+item.getValue().getLastName(),item.getValue().getAddress().toString(), item.getValue().getTelephone()});
 		}
 	}
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MemberList window = new MemberList();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MemberList window = new MemberList();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.

@@ -78,7 +78,7 @@ public class MemberCheckoutRecord extends JFrame implements LibWindow {
 					checkoutRecord[] List = item.getValue().getCheckoutRecord();
 					for (checkoutRecord e:List) {
 						model.addRow(new Object[]{e.getBookCopy().getBook().getIsbn(), e.getBookCopy().getBook().getTitle(),
-								e.getBookCopy().getBook().getNumCopies(), e.getMember().getFirstName()+" "+e.getMember().getLastName(),
+								e.getBookCopy().getCopyNum(), e.getMember().getFirstName()+" "+e.getMember().getLastName(),
 								e.getCheckoutDate().getMonthValue()+"/"+e.getCheckoutDate().getDayOfMonth()+"/"+e.getCheckoutDate().getYear(),
 								+e.getDueDate().getMonthValue()+"/"+e.getDueDate().getDayOfMonth()+"/"+e.getDueDate().getYear()});
 					}
@@ -101,18 +101,18 @@ public class MemberCheckoutRecord extends JFrame implements LibWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MemberCheckoutRecord window = new MemberCheckoutRecord();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MemberCheckoutRecord window = new MemberCheckoutRecord();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -140,8 +140,6 @@ public class MemberCheckoutRecord extends JFrame implements LibWindow {
 		lblNewLabel_18.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNewLabel_18.setBounds(85, 42, 109, 23);
 		frame.getContentPane().add(lblNewLabel_18);
-		
-		// populating Combobox Member list
 		
 				JComboBox comboBox1 = new JComboBox(generateComboBoxModel()); // Generating combo box items from generated model
 				comboBox1.setBounds(188, 43, 267, 22);

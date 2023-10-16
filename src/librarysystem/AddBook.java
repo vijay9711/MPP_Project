@@ -261,6 +261,10 @@ public class AddBook extends JFrame implements LibWindow {
 				st.append(item.getName() + "\n");
 				
 			}
+			else if((item.getName() == "Book copy count" || item.getName() == "Book ISBN") && item.getText().trim() != "" && !item.getText().matches("^[0-9]$")) {
+				st.append(item.getName()+ " input allow only numbers. \n");
+			}
+			
 		});
 		if(st.toString() != "") {
 			st.append("Please fill all field");

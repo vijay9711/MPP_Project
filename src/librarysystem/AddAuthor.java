@@ -189,7 +189,7 @@ public class AddAuthor extends JFrame implements LibWindow {
 		});
 		btnAddAuthor.setBounds(426, 347, 138, 23);
 		frame.getContentPane().add(btnAddAuthor);
-		list = Arrays.asList(authorFirstName,authorLastName,authorStreet,authorCity,authorAddressState,AuthorAddressZip,authorAddressPhone,authorBio);
+		list = Arrays.asList(authorFirstName,authorLastName,authorStreet,authorCity,authorAddressState,AuthorAddressZip,authorAddressPhone);
 	}
 
 	class BackToAddBook implements ActionListener{
@@ -251,6 +251,12 @@ public class AddAuthor extends JFrame implements LibWindow {
 			if(item.getText().trim().length() == 0) {
 				st.append(item.getName() + "\n");
 				
+			}
+			else if(item.getName() == "Zipcode" && item.getText().trim() != "" && !item.getText().matches("^[0-9]{5}$")) {
+				st.append("zip code should be in 5 digits without special character.\n");
+			}
+			else if(item.getName() == "Phone" && item.getText().trim() != "" && !item.getText().matches("^[0-9]{3}-[0-9]{3}-[0-9]{4}$")) {
+				st.append("Phone number is not valid. Please enter 10 digit phone number. \n eg(000-000-0000) \n");
 			}
 		});
 		if(st.toString() != "") {
